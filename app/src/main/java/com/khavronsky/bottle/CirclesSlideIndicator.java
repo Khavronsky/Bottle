@@ -13,7 +13,7 @@ public class CirclesSlideIndicator extends View {
 
     private static final int DEFAULT_MARGIN = 0;
     private static final int MIN_WIDTH = 400;
-    private static final int MIN_HEIGHT = 100;
+    private static final int MIN_HEIGHT = 20;
     private static final int DEFAULT_COLOR = Color.GRAY;
     private static final int DEFAULT_FOCUSED_COLOR = Color.DKGRAY;
     private static final int DEFAULT_RADIUS = 20;
@@ -34,14 +34,17 @@ public class CirclesSlideIndicator extends View {
 
     public CirclesSlideIndicator(Context context) {
         super(context);
+        init(null);
     }
 
     public CirclesSlideIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(attrs);
     }
 
     public CirclesSlideIndicator(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(attrs);
     }
     private void init(AttributeSet attrs) {
         setMinimumWidth(MIN_WIDTH);
@@ -51,9 +54,13 @@ public class CirclesSlideIndicator extends View {
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
     private void setupAttributes(AttributeSet attrs){
-
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CirclesSlideIndicator);
-
+        radius = (int) a.getDimension(R.styleable.CirclesSlideIndicator_radius, DEFAULT_RADIUS);
+        margin = (int) a.getDimension(R.styleable.CirclesSlideIndicator_margin, DEFAULT_MARGIN);
+        countCircles = a.getInt(R.styleable.CirclesSlideIndicator_countCircles, DEFAULT_COUNT_OF_CIRCLE);
+        focusedCircle = a.getInt(R.styleable.CirclesSlideIndicator_focusedCircle, DEFAULT_FOCUSED_CIRCLE);
+        defaultColor = a.getColor(R.styleable.CirclesSlideIndicator_defaultColor, DEFAULT_COLOR);
+        focusedColor = a.getColor(R.styleable.CirclesSlideIndicator_focusedColor, DEFAULT_FOCUSED_COLOR);
         a.recycle();
     }
 

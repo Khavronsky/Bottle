@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CirclesSlideIndicator">
+        <attr name="defaultColor" format="color" />
+        <attr name="focusedColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="margin" format="dimension" />
+        <attr name="focusedCircle" format="integer" />
+        <attr name="countCircles" format="integer" />
+    </declare-styleable>
+</resources>

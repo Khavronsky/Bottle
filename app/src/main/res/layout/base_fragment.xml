@@ -4,32 +4,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:layout_height="300dp">
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/my_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageButton
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/picture_capacity"/>
+        <TextView
+            android:id="@+id/title_of_capacity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
         android:id="@+id/button_minus"
         android:layout_width="48dp"
         android:layout_height="48dp"
         app:srcCompat="@drawable/ic_remove_circle_outline_black_48dp" />
 
-    <ImageButton
+        <ImageButton
         android:id="@+id/button_plus"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/button_minus"
-        app:srcCompat="@drawable/ic_control_point_black_24dp"
-        />
-    <com.khavronsky.testcustomview.MyView
-        android:id="@+id/myCV1"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_margin="5dp"
-        android:background="#ffcf8c" />
+        app:srcCompat="@drawable/ic_control_point_black_24dp" />
+
+        <com.khavronsky.bottle.CirclesSlideIndicator
+            android:id="@+id/circlesSlideIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#ffcf8c"
+            android:layout_marginBottom="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </android.support.v4.view.ViewPager>
 
 </RelativeLayout>
 

@@ -29,11 +29,11 @@ public class AdapterToBaseFragment extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
-        bundle.putString(BasedFragment.TITLE, title[position]);
-        bundle.putInt(BasedFragment.VALUE, value[position]);
-        bundle.putInt(BasedFragment.CAPACITY_STEP, capacityStep[position]);
-        bundle.putSerializable(BasedFragment.PICS, pics[position]);
-        Fragment fragment = new BasedFragment();
+        bundle.putString(BaseFragment.TITLE, title[position]);
+        bundle.putInt(BaseFragment.VALUE, value[position]);
+        bundle.putInt(BaseFragment.CAPACITY_STEP, capacityStep[position]);
+        bundle.putSerializable(BaseFragment.PICS, pics[position]);
+        Fragment fragment = new BaseFragment();
         fragment.setArguments(bundle);
         return fragment;
     }

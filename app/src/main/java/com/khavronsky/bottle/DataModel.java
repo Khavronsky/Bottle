@@ -3,13 +3,21 @@ package com.khavronsky.bottle;
 
 class DataModel {
 
+    private int id;
     private CapacityType pics;
     private String title;
-    private int value;
+    private int capacityValue;
     private int capacityStep;
-
     public CapacityType getPics() {
         return pics;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setPics(CapacityType pics) {
@@ -24,12 +32,12 @@ class DataModel {
         this.title = title;
     }
 
-    public int getValue() {
-        return value;
+    public int getCapacityValue() {
+        return capacityValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setCapacityValue(int capacityValue) {
+        this.capacityValue = capacityValue;
     }
 
     public int getCapacityStep() {

@@ -26,11 +26,11 @@ public class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.base_fragment, container, false);
+        View view = inflater.inflate(R.layout.activity_main, container, false);
         plusButton = (ImageButton) view.findViewById(R.id.button_plus);
         minusButton = (ImageButton) view.findViewById(R.id.button_minus);
         imageView = (ImageView) view.findViewById(R.id.picture_capacity);
-        titleCapacity = (TextView) view.findViewById(R.id.title_of_capacity);
+        titleCapacity = (TextView) view.findViewById(R.id.tv_title_of_capacity);
         slideIndicator = (CirclesSlideIndicator) view.findViewById(R.id.circlesSlideIndicator);
 
         Bundle bundle = getArguments();

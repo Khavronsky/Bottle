@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Color palette -->
 <resources>
+    <!-- Default colour -->
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- Color palette -->
+
     <color name="bg">#e7e9eb</color>
     <color name="grey1">#ced1d6</color>
     <color name="grey3">#6b7485</color>

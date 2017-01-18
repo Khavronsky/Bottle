@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Color palette -->
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="bg">#e7e9eb</color>
+    <color name="grey1">#ced1d6</color>
+    <color name="grey3">#6b7485</color>
+    <color name="gold2">#dac978</color>
+    <color name="gold3">#a58144</color>
+    <color name="steps">#009ba1</color>
+    <color name="steps1">#8ad9db</color>
+    <color name="water">#2db4e5</color>
+    <color name="water1">#95dffa</color>
+    <color name="burn">#f6b321</color>
+    <color name="balance">#d77922</color>
+    <color name="sleep">#3b42a0</color>
+    <color name="sleep2">#7a96de</color>
+    <color name="km">#257f0c</color>
+    <color name="steps2">#006569</color>
+    <color name="robins_egg_blue_60">#9995dffa</color>
+    <color name="grey5">#262a31</color>
+    <color name="press">#52dddfe2</color>
+    <color name="pulse">#df5f5d</color>
+    <color name="white_80">#ccfafafa</color>
+    <color name="gold1">#bba279</color>
+    <color name="km1">#4f9d41</color>
+    <color name="km2">#93d680</color>
+    <color name="grey2">#a5a9b4</color>
+    <color name="white">#fafafa</color>
+    <color name="nav_bar">#dddfe2</color>
+    <color name="smart_alarm">#7853ad</color>
+    <color name="smart_alarm1">#d0b2f8</color>
+    <color name="pulse1">#f4abc0</color>
+    <color name="food1">#ed998e</color>
+    <color name="gold0">#d8c9b2</color>
+    <color name="press_32">#52dddfe2</color>
+    <color name="food">#9f3a3a</color>
 </resources>

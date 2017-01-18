@@ -9,13 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterToBaseFragment extends FragmentPagerAdapter {
-    List<DataModel> dataModels = new ArrayList<>();
+    private List<DataModel> dataModels = new ArrayList<>();
 
     interface VPCallback {
         void vpCallback(int id);
     }
 
     private VPCallback callback;
+
+    void subscribeCallBack(VPCallback callback){
+        this.callback = callback;
+    }
 
     public AdapterToBaseFragment(FragmentManager fm, List<DataModel> dataModels) {
         super(fm);
@@ -26,9 +30,10 @@ public class AdapterToBaseFragment extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
-
+        bundle.putSerializable(BaseFragment.PICS, dataModels.get(position).getPics());
         Fragment fragment = new BaseFragment();
         fragment.setArguments(bundle);
+        callback.vpCallback(dataModels.get(position).getId());
         return fragment;
     }
 

@@ -34,9 +34,21 @@ public class BaseFragment extends Fragment {
         slideIndicator = (CirclesSlideIndicator) view.findViewById(R.id.circlesSlideIndicator);
 
         Bundle bundle = getArguments();
-        if (bundle != null){
-
-
+        if (bundle != null) {
+            CapacityType pic = (CapacityType) bundle.getSerializable(PICS);
+            if (pic != null) {
+                switch (pic) {
+                    case BOTTLE:
+                        imageView.setImageResource(R.drawable.water_botle_full);
+                        return view;
+                    case GLASS:
+                        imageView.setImageResource(R.drawable.water_glass_full);
+                        return view;
+                    case DROP:
+                        imageView.setImageResource(R.drawable.water_drop_full);
+                        return view;
+                }
+            }
         }
         return view;
     }

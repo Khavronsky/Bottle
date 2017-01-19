@@ -24,7 +24,7 @@ class ClassForLightTesting implements MainActivity.ButtonListener {
 
         first.setPics(CapacityType.BOTTLE);
         first.setId(0);
-        first.setTitle("Water");
+        first.setTitle("Bottle");
         first.setCapacityStep(500);
 
         second.setPics(CapacityType.DROP);
@@ -39,10 +39,7 @@ class ClassForLightTesting implements MainActivity.ButtonListener {
 
         dataModelList = new ArrayList<>();
         dataModelList.add(first);
-        dataModelList.add(first);
         dataModelList.add(second);
-        dataModelList.add(second);
-        dataModelList.add(third);
         dataModelList.add(third);
         return dataModelList;
     }

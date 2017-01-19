@@ -23,7 +23,6 @@ public class AdapterToBaseFragment extends FragmentPagerAdapter {
         BaseFragment fragment = new BaseFragment();
         fragment.setArguments(bundle);
         fragment.setCapacityType( dataModels.get(position).getPics());
-//        callback.vpCallback(dataModels.get(position).getId());
         return fragment;
     }
 

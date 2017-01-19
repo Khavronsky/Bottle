@@ -6,7 +6,6 @@ class DataModel {
     private int id;
     private CapacityType pics;
     private String title;
-    private int capacityValue;
     private int capacityStep;
     public CapacityType getPics() {
         return pics;
@@ -30,14 +29,6 @@ class DataModel {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getCapacityValue() {
-        return capacityValue;
-    }
-
-    public void setCapacityValue(int capacityValue) {
-        this.capacityValue = capacityValue;
     }
 
     public int getCapacityStep() {

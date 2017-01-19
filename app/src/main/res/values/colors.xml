@@ -2,9 +2,9 @@
 <resources>
     <!-- Default colour -->
 
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#77cdec</color>
+    <color name="colorPrimaryDark">#41659b</color>
+    <color name="colorAccent">#df5f5d</color>
 
     <!-- Color palette -->
 

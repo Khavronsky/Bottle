@@ -6,7 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="300dp">
 
-
+    <ImageView
+        android:id="@+id/picture_capacity"
+        android:layout_width="128dp"
+        android:layout_height="176dp"
+        android:adjustViewBounds="true" />
 
 </RelativeLayout>
 

@@ -98,7 +98,6 @@ public class CirclesSlideIndicator extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(Color.LTGRAY);
 
         int firstCircleCoordinate;
         int oddOrEven = countCircles;

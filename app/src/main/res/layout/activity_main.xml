@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="344dp"
         android:layout_marginTop="50dp"
-        android:background="@color/bg">
+        android:background="@color/water1">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/my_pager"

@@ -6,9 +6,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-class ClassForLightTesting implements MainActivity.ButtonListener {
+class ClassForLightTesting implements AdditionWater.ButtonListener {
 
-    ClassForLightTesting(MainActivity testedObject) {
+    ClassForLightTesting(AdditionWater testedObject) {
         testedObject.setOnButtonPlusMinusListener(this);
     }
 

@@ -2,6 +2,9 @@ package com.khavronsky.bottle;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 //    ImageButton plusButton;
@@ -11,19 +14,31 @@ public class MainActivity extends AppCompatActivity {
 //    TextView valueOfCapacity;
 //    ButtonListener buttonListener;
 
-//    int currentCapacityID;
+    //    int currentCapacityID;
 //    int currentScreen;
 //    int currentCapacityValueOnScreen;
 //    List<DataModel> dataModelList;
 //    AdapterToBaseFragment adapterToBaseFragment;
 //    private ViewPager viewPager;
 
+    AdditionWater additionWater;
+    Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AdditionWater additionWater = new AdditionWater(this);
+        additionWater = (AdditionWater) findViewById(R.id.testest);
+        button = (Button) findViewById(R.id.button1);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("!!!!!", "onClick: BOOOOM!");
+            }
+        });
+
+
 //        ClassForLightTesting testing = new ClassForLightTesting(this);
 //        dataModelList = testing.getList();
 //

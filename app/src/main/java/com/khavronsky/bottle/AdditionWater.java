@@ -25,7 +25,6 @@ public class AdditionWater extends FrameLayout implements View.OnClickListener {
 
     private int currentCapacityID;
     private int currentScreen;
-    private int currentCapacityValueOnScreen;
     private List<DataModel> dataModelList = new ArrayList<>();
     private AdapterToBaseFragment adapterToBaseFragment;
     private ViewPager viewPager;
@@ -69,7 +68,6 @@ public class AdditionWater extends FrameLayout implements View.OnClickListener {
     private void firstSetView() {
         slideIndicator.setCountOfCircle(dataModelList.size());
         currentCapacityID = dataModelList.get(0).getId();
-        currentCapacityValueOnScreen = dataModelList.get(0).getCapacityStep();
         adapterToBaseFragment = new AdapterToBaseFragment(((FragmentActivity) context).getSupportFragmentManager(), dataModelList);
         viewPager.setAdapter(adapterToBaseFragment);
         plusButton.setOnClickListener(this);
@@ -81,7 +79,6 @@ public class AdditionWater extends FrameLayout implements View.OnClickListener {
             public void onPageSelected(int position) {
                 currentScreen = position;
                 currentCapacityID = dataModelList.get(position).getId();
-                currentCapacityValueOnScreen = dataModelList.get(position).getCapacityStep();
                 setViewParamFromList(dataModelList.get(position));
             }
 

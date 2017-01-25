@@ -2,6 +2,7 @@ package com.khavronsky.bottle;
 
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,16 @@ class ClassForLightTesting implements AdditionWater.ButtonListener {
     }
 
     @Override
-    public void buttonPlusOrMinusPressed(int dataModelID, boolean buttonPressed) {
-        Log.d("TEST RUNNING", "buttonPlusOrMinusPressed: " + dataModelID + buttonPressed);
+    public void buttonPlusOrMinusPressed(int dataModelID, boolean whichButtonPressed) {
+        Log.d("TEST RUNNING", "buttonPlusOrMinusPressed: " + dataModelID + whichButtonPressed);
+        String toastString = "MINUS PRESSED";
+        if (whichButtonPressed){
+            toastString = "PLUS PRESSED";
+        }
+        Toast.makeText(new MainActivity().getApplicationContext(), toastString, Toast.LENGTH_SHORT).show();
     }
-    List<DataModel> getList() {
+
+    static List<DataModel> getList() {
         List<DataModel> dataModelList;
         DataModel first = new DataModel();
         DataModel second = new DataModel();

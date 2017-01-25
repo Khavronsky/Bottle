@@ -34,22 +34,22 @@ public class AdditionWater extends FrameLayout implements View.OnClickListener {
         super(context);
         this.context = context;
 
-//        init1();
-        init2();
+        init1();
+//        init2();
     }
 
     public AdditionWater(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-//        init1();
-        init2();
+        init1();
+//        init2();
     }
 
     public AdditionWater(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
-//        init1();
-        init2();
+        init1();
+//        init2();
     }
 //
     @Override
@@ -63,7 +63,6 @@ public class AdditionWater extends FrameLayout implements View.OnClickListener {
         ClassForLightTesting testing = new ClassForLightTesting(this);
         dataModelList = testing.getList();
 
-        titleCapacity.setText("TEXT");
         slideIndicator.setCountOfCircle(dataModelList.size());
         currentCapacityID = dataModelList.get(0).getId();
         currentCapacityValueOnScreen = dataModelList.get(0).getCapacityStep();
@@ -104,6 +103,7 @@ public class AdditionWater extends FrameLayout implements View.OnClickListener {
         valueOfCapacity = (TextView) findViewById(R.id.tv_value_of_capacity);
         slideIndicator = (CirclesSlideIndicator) findViewById(R.id.circlesSlideIndicator);
         viewPager = (ViewPager) findViewById(R.id.my_pager);
+        init();
     }
 
     private void init2() {

@@ -1,27 +1,10 @@
 package com.khavronsky.bottle;
 
 
-import android.util.Log;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
-class ClassForLightTesting implements AdditionWater.ButtonListener {
-
-    ClassForLightTesting(AdditionWater testedObject) {
-        testedObject.setOnButtonPlusMinusListener(this);
-    }
-
-    @Override
-    public void buttonPlusOrMinusPressed(int dataModelID, boolean whichButtonPressed) {
-        Log.d("TEST RUNNING", "buttonPlusOrMinusPressed: " + dataModelID + whichButtonPressed);
-        String toastString = "MINUS PRESSED";
-        if (whichButtonPressed){
-            toastString = "PLUS PRESSED";
-        }
-        Toast.makeText(new MainActivity().getApplicationContext(), toastString, Toast.LENGTH_SHORT).show();
-    }
+class TestingWithFakeData {
 
     static List<DataModel> getList() {
         List<DataModel> dataModelList;

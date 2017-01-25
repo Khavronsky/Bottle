@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         additionWater = (AdditionWater) findViewById(R.id.addition_water);
-        additionWater.setDataModelList(ClassForLightTesting.getList());
+        additionWater.setDataModelList(TestingWithFakeData.getList());
         additionWater.setOnButtonPlusMinusListener(new AdditionWater.ButtonListener() {
             @Override
             public void buttonPlusOrMinusPressed(int dataModelID, boolean whichButtonPressed) {

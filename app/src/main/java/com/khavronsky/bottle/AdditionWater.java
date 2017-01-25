@@ -10,59 +10,63 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdditionWater extends FrameLayout implements View.OnClickListener {
     private final Context context;
-    ImageButton plusButton;
-    ImageButton minusButton;
-    CirclesSlideIndicator slideIndicator;
-    TextView titleCapacity;
-    TextView valueOfCapacity;
+    private ImageButton plusButton;
+    private ImageButton minusButton;
+    private CirclesSlideIndicator slideIndicator;
+    private TextView titleCapacity;
+    private TextView valueOfCapacity;
     ButtonListener buttonListener;
 
-    int currentCapacityID;
-    int currentScreen;
-    int currentCapacityValueOnScreen;
-    List<DataModel> dataModelList;
-    AdapterToBaseFragment adapterToBaseFragment;
+    private int currentCapacityID;
+    private int currentScreen;
+    private int currentCapacityValueOnScreen;
+    private List<DataModel> dataModelList = new ArrayList<>();
+    private AdapterToBaseFragment adapterToBaseFragment;
     private ViewPager viewPager;
 
     public AdditionWater(Context context) {
         super(context);
         this.context = context;
-
-        init1();
-//        init2();
+        init();
     }
 
     public AdditionWater(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        init1();
-//        init2();
+        init();
     }
 
     public AdditionWater(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
-        init1();
-//        init2();
-    }
-//
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout( changed,  left,  top,  right,  bottom);
+        init();
     }
 
+    public void setDataModelList(final List<DataModel> dataModelList) {
+        this.dataModelList = dataModelList;
+        firstSetView();
+
+    }
 
     private void init() {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        inflater.inflate(R.layout.addition_water, this);
 
-        ClassForLightTesting testing = new ClassForLightTesting(this);
-        dataModelList = testing.getList();
+        plusButton = (ImageButton) findViewById(R.id.button_plus);
+        minusButton = (ImageButton) findViewById(R.id.button_minus);
+        titleCapacity = (TextView) findViewById(R.id.tv_title_of_capacity);
+        valueOfCapacity = (TextView) findViewById(R.id.tv_value_of_capacity);
+        slideIndicator = (CirclesSlideIndicator) findViewById(R.id.circlesSlideIndicator);
+        viewPager = (ViewPager) findViewById(R.id.my_pager);
+    }
 
+    private void firstSetView() {
         slideIndicator.setCountOfCircle(dataModelList.size());
         currentCapacityID = dataModelList.get(0).getId();
         currentCapacityValueOnScreen = dataModelList.get(0).getCapacityStep();
@@ -74,11 +78,6 @@ public class AdditionWater extends FrameLayout implements View.OnClickListener {
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
             public void onPageSelected(int position) {
                 currentScreen = position;
                 currentCapacityID = dataModelList.get(position).getId();
@@ -87,47 +86,20 @@ public class AdditionWater extends FrameLayout implements View.OnClickListener {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
+            @Override
+            public void onPageScrollStateChanged(int state) {
             }
         });
     }
 
-    private void init1() {
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.addition_water, this);
-
-        plusButton = (ImageButton) findViewById(R.id.button_plus);
-        minusButton = (ImageButton) findViewById(R.id.button_minus);
-        titleCapacity = (TextView) findViewById(R.id.tv_title_of_capacity);
-        valueOfCapacity = (TextView) findViewById(R.id.tv_value_of_capacity);
-        slideIndicator = (CirclesSlideIndicator) findViewById(R.id.circlesSlideIndicator);
-        viewPager = (ViewPager) findViewById(R.id.my_pager);
-        init();
-    }
-
-    private void init2() {
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rootView = inflater.inflate(R.layout.addition_water, null);
-        addView(rootView);
-
-        plusButton = (ImageButton) rootView.findViewById(R.id.button_plus);
-        minusButton = (ImageButton) rootView.findViewById(R.id.button_minus);
-        titleCapacity = (TextView) rootView.findViewById(R.id.tv_title_of_capacity);
-        valueOfCapacity = (TextView) rootView.findViewById(R.id.tv_value_of_capacity);
-        slideIndicator = (CirclesSlideIndicator) rootView.findViewById(R.id.circlesSlideIndicator);
-        viewPager = (ViewPager) rootView.findViewById(R.id.my_pager);
-
-        init();
-    }
-
     private void setViewParamFromList(DataModel dataModel) {
-
         titleCapacity.setText(dataModel.getTitle());
         valueOfCapacity.setText(String.valueOf(dataModel.getCapacityStep()));
         slideIndicator.setFocusedCircle(currentScreen);
         slideIndicator.invalidate();
-
     }
 
     @Override
@@ -135,18 +107,16 @@ public class AdditionWater extends FrameLayout implements View.OnClickListener {
         int id = v.getId();
         switch (id) {
             case R.id.button_plus:
-                Toast.makeText(context, "PLUS PRESSED", Toast.LENGTH_SHORT).show();
                 buttonListener.buttonPlusOrMinusPressed(currentCapacityID, true);
                 break;
             case R.id.button_minus:
-                Toast.makeText(context, "MINUS PRESSED", Toast.LENGTH_SHORT).show();
                 buttonListener.buttonPlusOrMinusPressed(currentCapacityID, false);
                 break;
         }
     }
 
     interface ButtonListener {
-        void buttonPlusOrMinusPressed(int dataModelID, boolean buttonPressed);
+        void buttonPlusOrMinusPressed(int dataModelID, boolean whichButtonPressed);
     }
 
     void setOnButtonPlusMinusListener(ButtonListener buttonListener) {

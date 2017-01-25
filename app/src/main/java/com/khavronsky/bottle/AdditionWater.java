@@ -4,17 +4,17 @@ package com.khavronsky.bottle;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdditionWater extends FrameLayout implements View.OnClickListener {
+public class AdditionWater extends CardView implements View.OnClickListener {
     private final Context context;
     private ImageButton plusButton;
     private ImageButton minusButton;

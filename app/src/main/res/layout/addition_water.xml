@@ -8,9 +8,10 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/my_pager"
-        android:layout_width="128dp"
+        android:layout_width="match_parent"
         android:layout_height="176dp"
         android:layout_gravity="center_horizontal"
+
         android:layout_marginTop="32dp" />
 
     <TextView
@@ -19,6 +20,7 @@
         android:layout_height="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="212dp"
+        android:elevation="100dp"
         android:text="@string/title" />
 
     <FrameLayout
@@ -34,7 +36,8 @@
             android:layout_gravity="right"
             android:background="#00000000"
             android:contentDescription="@string/button_plus_desc"
-            app:srcCompat="@mipmap/ic_water_plus" />
+            android:elevation="10dp"
+            app:srcCompat="@drawable/selector1" />
 
         <ImageButton
             android:id="@+id/button_minus"
@@ -42,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:background="#00000000"
+            android:elevation="10dp"
             android:contentDescription="@string/button_minus_desc"
             app:srcCompat="@mipmap/ic_water_minus" />
 
@@ -50,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:layout_gravity="center"
+            android:elevation="10dp"
             android:text="@string/capacity" />
     </FrameLayout>
 

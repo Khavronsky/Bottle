@@ -6,16 +6,16 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gold0">
+    android:background="@color/bg">
 
     <com.khavronsky.bottle.AdditionWater
         android:id="@+id/addition_water"
-        android:layout_width="match_parent"
+        android:layout_width="344dp"
         android:layout_height="344dp"
         android:layout_marginTop="50dp"
-        app:cardPreventCornerOverlap="true"
+        android:layout_gravity="center_horizontal"
         card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="10dp">
+        card_view:cardElevation="6dp">
 
     </com.khavronsky.bottle.AdditionWater>
 </FrameLayout>

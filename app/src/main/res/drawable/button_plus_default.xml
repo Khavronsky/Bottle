@@ -9,15 +9,15 @@
 
             <gradient
                 android:angle="270"
-                android:endColor="#51000000"
-                android:startColor="#000000"
+                android:endColor="#14000000"
+                android:startColor="#3c000000"
                 android:type="linear" />
 
         </shape>
     </item>
     <item
         android:bottom="2dp">
-        <bitmap android:src="@drawable/ic_water_plus"/>
+        <bitmap android:src="@drawable/ic_water_plus_"/>
 
     </item>
 

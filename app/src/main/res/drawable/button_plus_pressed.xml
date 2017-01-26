@@ -12,7 +12,7 @@
     </item>
     <item
         android:top="2dp">
-        <bitmap android:src="@drawable/ic_water_plus"/>
+        <bitmap android:src="@drawable/ic_water_plus_"/>
 
     </item>
 

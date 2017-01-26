@@ -25,7 +25,7 @@ class TestingWithFakeData {
         third.setPics(CapacityType.GLASS);
         third.setId(2);
         third.setTitle("Glass");
-        third.setCapacityStep(300);
+        third.setCapacityStep(250);
 
         dataModelList = new ArrayList<>();
         dataModelList.add(first);

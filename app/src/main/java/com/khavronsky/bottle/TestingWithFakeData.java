@@ -6,7 +6,7 @@ import java.util.List;
 
 class TestingWithFakeData {
 
-    static List<DataModel> getList() {
+    static List<DataModel> getFakeDataModelList() {
         List<DataModel> dataModelList;
         DataModel first = new DataModel();
         DataModel second = new DataModel();
@@ -32,5 +32,12 @@ class TestingWithFakeData {
         dataModelList.add(second);
         dataModelList.add(third);
         return dataModelList;
+    }
+    static List <FakeDate> getFakeDateList(){
+        List<FakeDate> dates = new ArrayList<>();
+        for (int i = 1; i <= 31; i++) {
+            dates.add(new FakeDate(i, "октября"));
+        }
+        return dates;
     }
 }

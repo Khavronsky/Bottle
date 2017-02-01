@@ -25,8 +25,8 @@ public class AdditionWater extends CardView implements View.OnClickListener {
 
     private int currentCapacityID;
     private int currentScreen;
-    private List<DataModel> dataModelList = new ArrayList<>();
-    private AdapterToBaseFragment adapterToBaseFragment;
+    private List<DataModelToAddWaterView> dataModelToAddWaterViewList = new ArrayList<>();
+    private AdapterToAddWaterFragment adapterToAddWaterFragment;
     private ViewPager viewPager;
 
     public AdditionWater(Context context) {
@@ -47,8 +47,8 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         init();
     }
 
-    public void setDataModelList(final List<DataModel> dataModelList) {
-        this.dataModelList = dataModelList;
+    public void setDataModelToAddWaterViewList(final List<DataModelToAddWaterView> dataModelToAddWaterViewList) {
+        this.dataModelToAddWaterViewList = dataModelToAddWaterViewList;
         firstSetView();
 
     }
@@ -66,20 +66,20 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     }
 
     private void firstSetView() {
-        slideIndicator.setCountOfCircle(dataModelList.size());
-        currentCapacityID = dataModelList.get(0).getId();
-        adapterToBaseFragment = new AdapterToBaseFragment(((FragmentActivity) context).getSupportFragmentManager(), dataModelList);
-        viewPager.setAdapter(adapterToBaseFragment);
+        slideIndicator.setCountOfCircle(dataModelToAddWaterViewList.size());
+        currentCapacityID = dataModelToAddWaterViewList.get(0).getId();
+        adapterToAddWaterFragment = new AdapterToAddWaterFragment(((FragmentActivity) context).getSupportFragmentManager(), dataModelToAddWaterViewList);
+        viewPager.setAdapter(adapterToAddWaterFragment);
         plusButton.setOnClickListener(this);
         minusButton.setOnClickListener(this);
-        setViewParamFromList(dataModelList.get(currentScreen));
+        setViewParamFromList(dataModelToAddWaterViewList.get(currentScreen));
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 currentScreen = position;
-                currentCapacityID = dataModelList.get(position).getId();
-                setViewParamFromList(dataModelList.get(position));
+                currentCapacityID = dataModelToAddWaterViewList.get(position).getId();
+                setViewParamFromList(dataModelToAddWaterViewList.get(position));
             }
 
             @Override
@@ -92,9 +92,9 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         });
     }
 
-    private void setViewParamFromList(DataModel dataModel) {
-        titleCapacity.setText(dataModel.getTitle());
-        valueOfCapacity.setText(String.valueOf(dataModel.getCapacityStep()));
+    private void setViewParamFromList(DataModelToAddWaterView dataModelToAddWaterView) {
+        titleCapacity.setText(dataModelToAddWaterView.getTitle());
+        valueOfCapacity.setText(String.valueOf(dataModelToAddWaterView.getCapacityStep()));
         slideIndicator.setFocusedCircle(currentScreen);
         slideIndicator.invalidate();
     }

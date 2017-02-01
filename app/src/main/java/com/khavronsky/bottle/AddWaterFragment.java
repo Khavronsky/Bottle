@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-public class BaseFragment extends Fragment {
+public class AddWaterFragment extends Fragment {
     static final String PICS = "pics";
 
     ImageView imageView;
@@ -17,7 +17,7 @@ public class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.base_fragment, container, false);
+        View view = inflater.inflate(R.layout.add_water_fragment, container, false);
         imageView = (ImageView) view.findViewById(R.id.picture_capacity);
         return view;
     }

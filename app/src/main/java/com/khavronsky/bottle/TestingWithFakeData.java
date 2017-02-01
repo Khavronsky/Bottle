@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 class TestingWithFakeData {
+    private static List<FakeDate> dates = new ArrayList<>();
+    private static List<DataModelToAddWaterView> dataModelToAddWaterViewList;
 
-    static List<DataModel> getFakeDataModelList() {
-        List<DataModel> dataModelList;
-        DataModel first = new DataModel();
-        DataModel second = new DataModel();
-        DataModel third = new DataModel();
+    static List<DataModelToAddWaterView> getFakeDataModelList() {
+
+        DataModelToAddWaterView first = new DataModelToAddWaterView();
+        DataModelToAddWaterView second = new DataModelToAddWaterView();
+        DataModelToAddWaterView third = new DataModelToAddWaterView();
 
         first.setPics(CapacityType.BOTTLE);
         first.setId(0);
@@ -27,17 +29,30 @@ class TestingWithFakeData {
         third.setTitle("Glass");
         third.setCapacityStep(250);
 
-        dataModelList = new ArrayList<>();
-        dataModelList.add(first);
-        dataModelList.add(second);
-        dataModelList.add(third);
-        return dataModelList;
+        dataModelToAddWaterViewList = new ArrayList<>();
+        dataModelToAddWaterViewList.add(first);
+        dataModelToAddWaterViewList.add(second);
+        dataModelToAddWaterViewList.add(third);
+        return dataModelToAddWaterViewList;
     }
+
     static List <FakeDate> getFakeDateList(){
-        List<FakeDate> dates = new ArrayList<>();
+
         for (int i = 1; i <= 31; i++) {
             dates.add(new FakeDate(i, "октября"));
         }
         return dates;
+    }
+
+    static List<DataForWaterScreen> getDataForWaterScreenList(){
+        List<DataForWaterScreen> dataForWaterScreenList = new ArrayList<>();
+        DataForWaterScreen dataForWaterScreen;
+        for (int i = 1; i <= 31; i++){
+            dataForWaterScreen = new DataForWaterScreen();
+            dataForWaterScreen.setDateList(dates);
+            dataForWaterScreen.setDataModelToAddWaterViews(dataModelToAddWaterViewList);
+            dataForWaterScreenList.add(dataForWaterScreen);
+        }
+        return dataForWaterScreenList;
     }
 }

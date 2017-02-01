@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/water_screen_fragment"
+    android:background="@color/bg"
+    android:gravity="center_horizontal">
+
+    <com.khavronsky.bottle.MyDateChanger
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:id="@+id/date_changer"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="43dp"
+        android:layout_marginTop="64dp"
+        android:id="@+id/consumed_water"/>
+
+    <com.khavronsky.bottle.AdditionWater
+        android:id="@+id/addition_water"
+        android:layout_width="344dp"
+        android:layout_height="344dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="170dp"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="6dp">
+
+    </com.khavronsky.bottle.AdditionWater>
+
+</FrameLayout>

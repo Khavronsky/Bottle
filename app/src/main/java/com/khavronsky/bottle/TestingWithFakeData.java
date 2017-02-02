@@ -1,14 +1,21 @@
 package com.khavronsky.bottle;
 
 
+import android.util.Log;
+import android.util.SparseArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
 class TestingWithFakeData {
-    private static List<FakeDate> dates = new ArrayList<>();
+    private static SparseArray<DataOfWaterConsumed> consumedWaterList = new SparseArray();
     private static List<DataModelToAddWaterView> dataModelToAddWaterViewList;
 
-    static List<DataModelToAddWaterView> getFakeDataModelList() {
+    static {
+        createDataOfWaterConsumed();
+    }
+
+    static List<DataModelToAddWaterView> getDataModelToAddWaterViewList() {
 
         DataModelToAddWaterView first = new DataModelToAddWaterView();
         DataModelToAddWaterView second = new DataModelToAddWaterView();
@@ -36,23 +43,38 @@ class TestingWithFakeData {
         return dataModelToAddWaterViewList;
     }
 
-    static List <FakeDate> getFakeDateList(){
-
+    private static void createDataOfWaterConsumed(){
         for (int i = 1; i <= 31; i++) {
-            dates.add(new FakeDate(i, "октября"));
+            consumedWaterList.put(i, new DataOfWaterConsumed(0, 2000));
         }
-        return dates;
     }
 
-    static List<DataForWaterScreen> getDataForWaterScreenList(){
-        List<DataForWaterScreen> dataForWaterScreenList = new ArrayList<>();
-        DataForWaterScreen dataForWaterScreen;
-        for (int i = 1; i <= 31; i++){
-            dataForWaterScreen = new DataForWaterScreen();
-            dataForWaterScreen.setDateList(dates);
-            dataForWaterScreen.setDataModelToAddWaterViews(dataModelToAddWaterViewList);
-            dataForWaterScreenList.add(dataForWaterScreen);
-        }
-        return dataForWaterScreenList;
+    static DataOfWaterConsumed getDataOfWaterConsumed(int date){
+        return consumedWaterList.get(date);
     }
+
+    static void addWaterConsumed(int date, int capacity){
+        Log.d("MyLog Fake", "addWaterConsumed: cap" + capacity);
+        DataOfWaterConsumed tmp = consumedWaterList.get(date);
+        int capacitySumm = tmp.getAmountOfWaterConsumed() + capacity;
+        Log.d("MyLog Fake", "addWaterConsumed: capSumm" + capacitySumm);
+
+        if (capacitySumm < 0) {
+            capacitySumm = 0;
+        }
+        tmp.setAmountOfWaterConsumed(capacitySumm);
+        consumedWaterList.put(date, tmp);
+    }
+
+//    static List<DataForWaterScreen> getDataForWaterScreenList(){
+//        List<DataForWaterScreen> dataForWaterScreenList = new ArrayList<>();
+//        DataForWaterScreen dataForWaterScreen;
+//        for (int i = 1; i <= 31; i++){
+//            dataForWaterScreen = new DataForWaterScreen();
+//            dataForWaterScreen.setDateList(consumedWaterList);
+//            dataForWaterScreen.setDataModelToAddWaterViews(dataModelToAddWaterViewList);
+//            dataForWaterScreenList.add(dataForWaterScreen);
+//        }
+//        return dataForWaterScreenList;
+//    }
 }

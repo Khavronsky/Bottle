@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DataForWaterScreen {
     private List<DataModelToAddWaterView> dataModelToAddWaterViews;
-    private List<FakeDate> dateList;
+    private List<DataOfWaterConsumed> dateList;
 
     public List<DataModelToAddWaterView> getDataModelToAddWaterViews() {
         return dataModelToAddWaterViews;
@@ -15,11 +15,11 @@ public class DataForWaterScreen {
         this.dataModelToAddWaterViews = dataModelToAddWaterViews;
     }
 
-    public List<FakeDate> getDateList() {
+    public List<DataOfWaterConsumed> getDateList() {
         return dateList;
     }
 
-    public void setDateList(List<FakeDate> dateList) {
+    public void setDateList(List<DataOfWaterConsumed> dateList) {
         this.dateList = dateList;
     }
 }

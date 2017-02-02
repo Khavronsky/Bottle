@@ -14,12 +14,20 @@
         android:layout_height="48dp"
         android:id="@+id/date_changer"/>
 
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:layout_height="43dp"
-        android:layout_marginTop="64dp"
-        android:id="@+id/consumed_water"/>
+        android:layout_marginTop="64dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="text"
+            android:textSize="24sp"
+            android:id="@+id/consumed_water"/>
+    </FrameLayout>
+
 
     <com.khavronsky.bottle.AdditionWater
         android:id="@+id/addition_water"

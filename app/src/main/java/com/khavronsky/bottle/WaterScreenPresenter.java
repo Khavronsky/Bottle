@@ -3,14 +3,11 @@ package com.khavronsky.bottle;
 
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class WaterScreenPresenter {
 
     private final static String TAG = "MyLog WaterScreenPresenter";
 
-    private List<FakeDate> dateList = new ArrayList<>();
+    private DataOfWaterConsumed waterConsumed;
     private IView view;
 
     WaterScreenPresenter(IView view) {
@@ -18,15 +15,18 @@ class WaterScreenPresenter {
         Log.d(TAG, "WaterScreenPresenter: constructor");
     }
 
-    FakeDate getDate(int date) {
+    void getDate(int date) {
         Log.d(TAG, "getDate: ");
-        dateList = TestingWithFakeData.getFakeDateList();
-        FakeDate fakeDate = dateList.get(date);
-        view.show();
-        return fakeDate;
+        waterConsumed = TestingWithFakeData.getDataOfWaterConsumed(date);
+        Log.d(TAG, "waterConsumed" + waterConsumed.getAmountOfWaterConsumed());
+        view.show(waterConsumed);
     }
 
     interface IView {
-        void show();
+        void show(DataOfWaterConsumed dataOfWaterConsumed);
+    }
+    void addConsumedWater(int date, int capacity){
+        TestingWithFakeData.addWaterConsumed(date, capacity);
+        getDate(date);
     }
 }

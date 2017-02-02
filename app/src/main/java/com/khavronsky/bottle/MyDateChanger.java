@@ -20,10 +20,12 @@ public class MyDateChanger extends CardView implements View.OnClickListener {
     TextView showDate;
     IDateChanged event;
 
-    interface IDateChanged{
+
+    interface IDateChanged {
         void changesHappened();
     }
-    void subscribeToChanges (IDateChanged event){
+
+    void subscribeToChanges(IDateChanged event) {
         this.event = event;
     }
 
@@ -42,15 +44,17 @@ public class MyDateChanger extends CardView implements View.OnClickListener {
         init();
     }
 
-    private void init(){
+    private void init() {
         Log.d(TAG, "init: ");
         LayoutInflater inflater = LayoutInflater.from(getContext());
         inflater.inflate(R.layout.my_date_changer, this);
 
         previousDate = (ImageButton) findViewById(R.id.previous_date);
+        previousDate.setOnClickListener(this);
         nextDate = (ImageButton) findViewById(R.id.next_date);
+        nextDate.setOnClickListener(this);
         showDate = (TextView) findViewById(R.id.date_title);
-        showDate.setText("1 апреля");
+        showCurrentDate();
     }
 
     public int getCurrentDate() {
@@ -59,28 +63,31 @@ public class MyDateChanger extends CardView implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        String s = " октября";
+
         int id = v.getId();
-        switch (id){
+        switch (id) {
             case (R.id.next_date):
-                if (currentDate < 31){
+                if (currentDate < 31) {
                     currentDate++;
                     event.changesHappened();
-                    s = (currentDate) + s;
-                    showDate.setText(s);
+                    showCurrentDate();
                     Log.d(TAG, "onClick: next date");
                 }
                 break;
             case (R.id.previous_date):
-                if(currentDate > 0){
+                if (currentDate > 1) {
                     currentDate--;
                     event.changesHappened();
-                    s = (currentDate) + s;
-                    showDate.setText(s);
+                    showCurrentDate();
                     Log.d(TAG, "onClick: previous date");
                 }
                 break;
         }
+    }
 
+    void showCurrentDate() {
+        String s = " октября";
+        s = (currentDate) + s;
+        showDate.setText(s);
     }
 }

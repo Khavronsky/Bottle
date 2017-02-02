@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bottle</string>
+    <string name="app_name">Water</string>
     <string name="waterTarget">Title</string>
     <string name="capacity">int Capacity</string>
     <string name="button_plus_desc">button_plus</string>

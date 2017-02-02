@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class MyDateChanger extends CardView implements View.OnClickListener {
     private final static String TAG = "MyLog MyDateChanger";
 
-    int currentDate = 15;
+    private int currentDate = 15;
 
     ImageButton previousDate;
     ImageButton nextDate;
@@ -89,5 +89,6 @@ public class MyDateChanger extends CardView implements View.OnClickListener {
         String s = " октября";
         s = (currentDate) + s;
         showDate.setText(s);
+        showDate.invalidate();
     }
 }

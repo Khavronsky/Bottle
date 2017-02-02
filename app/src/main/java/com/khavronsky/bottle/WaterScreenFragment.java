@@ -27,23 +27,56 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        presenter.setReference(this);
+        presenter.getDate(currentDate);
+    }
+
+    @Override
     public void show(DataOfWaterConsumed waterConsumed) {
         showConsumedWater.setText(formatDataToShow(waterConsumed));
+        showConsumedWater.invalidate();
     }
 
     private String formatDataToShow(DataOfWaterConsumed waterConsumed) {
         int amount = waterConsumed.getAmountOfWaterConsumed();
-        int amount2 = amount % 100 == 0 ? (amount % 1000 / 100) : (amount % 1000 / 10);
         int target = waterConsumed.getWaterTarget();
-        int target1 = target % 100 == 0 ? (target % 1000 / 100) : (target % 1000 / 10);
-        return amount / 1000 + "," + amount2 + "/" + target / 1000 + "," + target1 + " л";
+
+        int amount1 = amount / 1000;
+        int amount2 = (amount % 1000) / 100;
+        int amount3 = amount % 100 / 10;
+
+        int target1 = target / 1000;
+        int target2 = (target % 1000) / 100;
+        int target3 = target % 100 / 10;
+
+        String showData = "" + amount1;
+        if (amount3 != 0) {
+            showData = showData + "," + amount2 + amount3;
+        } else {
+            if (amount2 != 0) {
+                showData = showData + "," + amount2;
+            }
+        }
+        showData = showData + "/" + target1;
+        if (target3 != 0) {
+            showData = showData + "," + target2 + target3;
+        } else {
+            if (target2 != 0) {
+                showData = showData + "," + target2;
+            }
+        }
+        showData = showData + " л";
+        return showData;
     }
 
     private void init(View view) {
         Log.d(TAG, "init:");
         additionWater = (AdditionWater) view.findViewById(R.id.addition_water);
         dateChanger = (MyDateChanger) view.findViewById(R.id.date_changer);
-        presenter = new WaterScreenPresenter(this);
+        currentDate = dateChanger.getCurrentDate();
+        presenter = new WaterScreenPresenter();
         showConsumedWater = (TextView) view.findViewById(R.id.consumed_water);
         dateChanger.subscribeToChanges(new MyDateChanger.IDateChanged() {
             @Override
@@ -62,5 +95,11 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
                 presenter.addConsumedWater(currentDate, capacity);
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.clearReference();
     }
 }

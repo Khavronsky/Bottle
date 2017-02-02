@@ -3,15 +3,14 @@ package com.khavronsky.bottle;
 
 import android.util.Log;
 
-class WaterScreenPresenter {
+class WaterScreenPresenter extends AbstractPresenter<WaterScreenPresenter.IView> {
 
     private final static String TAG = "MyLog WaterScreenPresenter";
 
     private DataOfWaterConsumed waterConsumed;
-    private IView view;
 
-    WaterScreenPresenter(IView view) {
-        this.view = view;
+
+    WaterScreenPresenter() {
         Log.d(TAG, "WaterScreenPresenter: constructor");
     }
 
@@ -19,14 +18,17 @@ class WaterScreenPresenter {
         Log.d(TAG, "getDate: ");
         waterConsumed = TestingWithFakeData.getDataOfWaterConsumed(date);
         Log.d(TAG, "waterConsumed" + waterConsumed.getAmountOfWaterConsumed());
-        view.show(waterConsumed);
+        if (getMyObj() != null){
+            getMyObj().show(waterConsumed);
+        }
+    }
+
+    void addConsumedWater(int date, int capacity){
+        TestingWithFakeData.addWaterConsumed(date, capacity);
+        getDate(date);
     }
 
     interface IView {
         void show(DataOfWaterConsumed dataOfWaterConsumed);
-    }
-    void addConsumedWater(int date, int capacity){
-        TestingWithFakeData.addWaterConsumed(date, capacity);
-        getDate(date);
     }
 }

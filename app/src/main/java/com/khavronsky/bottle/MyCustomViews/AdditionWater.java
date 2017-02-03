@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.khavronsky.bottle.Adapters.AdapterToAddWaterFragment;
+import com.khavronsky.bottle.Adapters.AdapterToWaterPicsOnViewPagerFragment;
 import com.khavronsky.bottle.Data.DataModelToAddWaterView;
 import com.khavronsky.bottle.R;
 
@@ -30,7 +30,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     private int currentCapacityID;
     private int currentScreen;
     private List<DataModelToAddWaterView> dataModelToAddWaterViewList = new ArrayList<>();
-    private AdapterToAddWaterFragment adapterToAddWaterFragment;
+    private AdapterToWaterPicsOnViewPagerFragment adapterToAddWaterFragment;
     private ViewPager viewPager;
 
     public AdditionWater(Context context) {
@@ -72,7 +72,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     private void firstSetView() {
         slideIndicator.setCountOfCircle(dataModelToAddWaterViewList.size());
         currentCapacityID = dataModelToAddWaterViewList.get(0).getId();
-        adapterToAddWaterFragment = new AdapterToAddWaterFragment(((FragmentActivity) context).getSupportFragmentManager(), dataModelToAddWaterViewList);
+        adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(((FragmentActivity) context).getSupportFragmentManager(), dataModelToAddWaterViewList);
         viewPager.setAdapter(adapterToAddWaterFragment);
         plusButton.setOnClickListener(this);
         minusButton.setOnClickListener(this);

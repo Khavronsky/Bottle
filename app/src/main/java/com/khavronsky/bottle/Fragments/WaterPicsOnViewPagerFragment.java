@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.khavronsky.bottle.Data.CapacityType;
 import com.khavronsky.bottle.R;
 
-public class AddWaterFragment extends Fragment {
+public class WaterPicsOnViewPagerFragment extends Fragment {
     public static final String PICS = "pics";
 
     ImageView imageView;

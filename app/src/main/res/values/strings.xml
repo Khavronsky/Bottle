@@ -5,4 +5,11 @@
     <string name="capacity">int Capacity</string>
     <string name="button_plus_desc">button_plus</string>
     <string name="button_minus_desc">button_minus</string>
+    <string name="capacity_title">Новая емкость</string>
+    <string name="edit_capacity_title">Название</string>
+    <string name="Choose_icon">Выбор иконки:</string>
+    <string name="choose_capacity">Объем (мл):</string>
+    <string name="delete">УДАЛИТЬ</string>
+    <string name="Cancel">ОТМЕНА</string>
+    <string name="Save">СОХРАНИТЬ</string>
 </resources>

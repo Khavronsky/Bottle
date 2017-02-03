@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.khavronsky.bottle.AdapterToAddWaterFragment;
+import com.khavronsky.bottle.Adapters.AdapterToAddWaterFragment;
 import com.khavronsky.bottle.Data.DataModelToAddWaterView;
 import com.khavronsky.bottle.R;
 

@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Adapters;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.khavronsky.bottle.Data.DataModelToAddWaterView;
+import com.khavronsky.bottle.Fragments.AddWaterFragment;
 
 import java.util.ArrayList;
 import java.util.List;

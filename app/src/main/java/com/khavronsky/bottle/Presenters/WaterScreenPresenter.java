@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Presenters;
 
 
 import android.util.Log;
@@ -6,18 +6,18 @@ import android.util.Log;
 import com.khavronsky.bottle.Data.DataOfWaterConsumed;
 import com.khavronsky.bottle.Data.TestingWithFakeData;
 
-class WaterScreenPresenter extends AbstractPresenter<WaterScreenPresenter.IView> {
+public class WaterScreenPresenter extends AbstractPresenter<WaterScreenPresenter.IView> {
 
     private final static String TAG = "MyLog WaterScreenPresenter";
 
     private DataOfWaterConsumed waterConsumed;
 
 
-    WaterScreenPresenter() {
+    public WaterScreenPresenter() {
         Log.d(TAG, "WaterScreenPresenter: constructor");
     }
 
-    void getDate(int date) {
+    public void getDate(int date) {
         Log.d(TAG, "getDate: ");
         waterConsumed = TestingWithFakeData.getDataOfWaterConsumed(date);
         Log.d(TAG, "waterConsumed" + waterConsumed.getAmountOfWaterConsumed());
@@ -26,12 +26,12 @@ class WaterScreenPresenter extends AbstractPresenter<WaterScreenPresenter.IView>
         }
     }
 
-    void addConsumedWater(int date, int capacity){
+    public void addConsumedWater(int date, int capacity){
         TestingWithFakeData.addWaterConsumed(date, capacity);
         getDate(date);
     }
 
-    interface IView {
+    public interface IView {
         void show(DataOfWaterConsumed dataOfWaterConsumed);
     }
 }

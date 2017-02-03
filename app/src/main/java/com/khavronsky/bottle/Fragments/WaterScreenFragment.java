@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Fragments;
 
 
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import com.khavronsky.bottle.Data.DataOfWaterConsumed;
 import com.khavronsky.bottle.Data.TestingWithFakeData;
 import com.khavronsky.bottle.MyCustomViews.AdditionWater;
 import com.khavronsky.bottle.MyCustomViews.MyDateChanger;
+import com.khavronsky.bottle.R;
+import com.khavronsky.bottle.Presenters.WaterScreenPresenter;
 
 public class WaterScreenFragment extends Fragment implements WaterScreenPresenter.IView {
 

@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Presenters;
 
 
 import java.lang.ref.WeakReference;
@@ -11,11 +11,11 @@ public abstract class AbstractPresenter<T> {
         return weakReference != null ? weakReference.get() : null;
     }
 
-    void setReference(T obj) {
+    public void setReference(T obj) {
         weakReference = new WeakReference<>(obj);
     }
 
-    void clearReference() {
+    public void clearReference() {
         if (weakReference != null) {
             weakReference.clear();
             weakReference = null;

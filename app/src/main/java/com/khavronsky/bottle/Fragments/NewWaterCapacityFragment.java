@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Fragments;
 
 
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.khavronsky.bottle.R;
 
 public class NewWaterCapacityFragment extends Fragment{
 

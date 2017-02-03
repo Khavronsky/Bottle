@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Fragments;
 
 
 import android.os.Bundle;
@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.khavronsky.bottle.Data.CapacityType;
+import com.khavronsky.bottle.R;
 
 public class AddWaterFragment extends Fragment {
-    static final String PICS = "pics";
+    public static final String PICS = "pics";
 
     ImageView imageView;
     CapacityType capacityType = CapacityType.BOTTLE;

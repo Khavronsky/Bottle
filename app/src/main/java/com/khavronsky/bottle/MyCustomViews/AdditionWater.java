@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.MyCustomViews;
 
 
 import android.content.Context;
@@ -10,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.khavronsky.bottle.AdapterToAddWaterFragment;
+import com.khavronsky.bottle.Data.DataModelToAddWaterView;
+import com.khavronsky.bottle.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,11 +117,11 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         }
     }
 
-    interface ButtonListener {
+    public interface ButtonListener {
         void buttonPlusOrMinusPressed(int dataModelID, int capacity);
     }
 
-    void setOnButtonPlusMinusListener(ButtonListener buttonListener) {
+    public void setOnButtonPlusMinusListener(ButtonListener buttonListener) {
         this.buttonListener = buttonListener;
     }
 }

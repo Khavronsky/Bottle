@@ -1,7 +1,7 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Data;
 
 
-class DataModelToAddWaterView {
+public class DataModelToAddWaterView {
 
     private int id;
     private CapacityType pics;

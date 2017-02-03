@@ -3,6 +3,9 @@ package com.khavronsky.bottle;
 
 import android.util.Log;
 
+import com.khavronsky.bottle.Data.DataOfWaterConsumed;
+import com.khavronsky.bottle.Data.TestingWithFakeData;
+
 class WaterScreenPresenter extends AbstractPresenter<WaterScreenPresenter.IView> {
 
     private final static String TAG = "MyLog WaterScreenPresenter";

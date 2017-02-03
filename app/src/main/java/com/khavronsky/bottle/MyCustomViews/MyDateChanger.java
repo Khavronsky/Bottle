@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.MyCustomViews;
 
 
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.khavronsky.bottle.R;
 
 public class MyDateChanger extends CardView implements View.OnClickListener {
     private final static String TAG = "MyLog MyDateChanger";
@@ -21,11 +23,11 @@ public class MyDateChanger extends CardView implements View.OnClickListener {
     IDateChanged event;
 
 
-    interface IDateChanged {
+    public interface IDateChanged {
         void changesHappened();
     }
 
-    void subscribeToChanges(IDateChanged event) {
+    public void subscribeToChanges(IDateChanged event) {
         this.event = event;
     }
 

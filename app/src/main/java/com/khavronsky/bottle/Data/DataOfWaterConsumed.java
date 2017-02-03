@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Data;
 
 
 public class DataOfWaterConsumed {

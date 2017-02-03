@@ -1,5 +1,7 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Data;
 
+
+import com.khavronsky.bottle.R;
 
 public enum CapacityType {
     BOTTLE(R.drawable.water_botle_full),

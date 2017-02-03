@@ -10,6 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.khavronsky.bottle.Data.DataOfWaterConsumed;
+import com.khavronsky.bottle.Data.TestingWithFakeData;
+import com.khavronsky.bottle.MyCustomViews.AdditionWater;
+import com.khavronsky.bottle.MyCustomViews.MyDateChanger;
+
 public class WaterScreenFragment extends Fragment implements WaterScreenPresenter.IView {
 
     private final static String TAG = "MyLog WaterScreenFragment";

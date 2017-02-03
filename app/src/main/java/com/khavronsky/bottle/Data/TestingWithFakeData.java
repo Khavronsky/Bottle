@@ -1,4 +1,4 @@
-package com.khavronsky.bottle;
+package com.khavronsky.bottle.Data;
 
 
 import android.util.Log;
@@ -7,7 +7,7 @@ import android.util.SparseArray;
 import java.util.ArrayList;
 import java.util.List;
 
-class TestingWithFakeData {
+public class TestingWithFakeData {
     private static SparseArray<DataOfWaterConsumed> consumedWaterList = new SparseArray();
     private static List<DataModelToAddWaterView> dataModelToAddWaterViewList;
 
@@ -15,7 +15,7 @@ class TestingWithFakeData {
         createDataOfWaterConsumed();
     }
 
-    static List<DataModelToAddWaterView> getDataModelToAddWaterViewList() {
+    public static List<DataModelToAddWaterView> getDataModelToAddWaterViewList() {
 
         DataModelToAddWaterView first = new DataModelToAddWaterView();
         DataModelToAddWaterView second = new DataModelToAddWaterView();
@@ -49,11 +49,11 @@ class TestingWithFakeData {
         }
     }
 
-    static DataOfWaterConsumed getDataOfWaterConsumed(int date){
+    public static DataOfWaterConsumed getDataOfWaterConsumed(int date){
         return consumedWaterList.get(date);
     }
 
-    static void addWaterConsumed(int date, int capacity){
+    public static void addWaterConsumed(int date, int capacity){
         Log.d("MyLog Fake", "addWaterConsumed: cap" + capacity);
         DataOfWaterConsumed tmp = consumedWaterList.get(date);
         int capacitySumm = tmp.getAmountOfWaterConsumed() + capacity;

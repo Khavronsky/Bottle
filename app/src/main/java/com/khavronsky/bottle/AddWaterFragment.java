@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.khavronsky.bottle.Data.CapacityType;
+
 public class AddWaterFragment extends Fragment {
     static final String PICS = "pics";
 

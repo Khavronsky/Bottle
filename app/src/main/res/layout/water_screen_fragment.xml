@@ -9,7 +9,7 @@
     android:background="@color/bg"
     android:gravity="center_horizontal">
 
-    <com.khavronsky.bottle.MyDateChanger
+    <com.khavronsky.bottle.MyCustomViews.MyDateChanger
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:id="@+id/date_changer"/>
@@ -29,7 +29,7 @@
     </FrameLayout>
 
 
-    <com.khavronsky.bottle.AdditionWater
+    <com.khavronsky.bottle.MyCustomViews.AdditionWater
         android:id="@+id/addition_water"
         android:layout_width="344dp"
         android:layout_height="344dp"
@@ -38,6 +38,6 @@
         card_view:cardCornerRadius="5dp"
         card_view:cardElevation="6dp">
 
-    </com.khavronsky.bottle.AdditionWater>
+    </com.khavronsky.bottle.MyCustomViews.AdditionWater>
 
 </FrameLayout>

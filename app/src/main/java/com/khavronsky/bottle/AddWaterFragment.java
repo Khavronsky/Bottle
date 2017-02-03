@@ -13,7 +13,8 @@ public class AddWaterFragment extends Fragment {
     static final String PICS = "pics";
 
     ImageView imageView;
-    CapacityType capacityType=CapacityType.BOTTLE;
+    CapacityType capacityType = CapacityType.BOTTLE;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,26 +29,11 @@ public class AddWaterFragment extends Fragment {
         setCapacityTypeImage(capacityType);
     }
 
-    public void setCapacityType(CapacityType capacityType)
-
-    {
-        this.capacityType=capacityType;
+    public void setCapacityType(CapacityType capacityType) {
+        this.capacityType = capacityType;
     }
-    public void setCapacityTypeImage(CapacityType capacityType)
 
-    {
-        switch (capacityType) {
-            case BOTTLE:
-                imageView.setImageResource(R.drawable.water_botle_full);
-                break;
-            case GLASS:
-                imageView.setImageResource(R.drawable.water_glass_full);
-                break;
-            case DROP:
-                imageView.setImageResource(R.drawable.water_drop_full);
-                break;
-        }
-
-
+    public void setCapacityTypeImage(CapacityType capacityType) {
+        imageView.setImageResource(capacityType.getRes());
     }
 }

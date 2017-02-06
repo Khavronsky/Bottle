@@ -26,9 +26,12 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
     WaterScreenPresenter presenter;
     TextView showConsumedWater;
 
+   public static android.support.v4.app.FragmentManager getChildFragmentManager = null; //TODO move to AdditionWater
+
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.water_screen_fragment, container, false);
+        getChildFragmentManager = getChildFragmentManager(); //TODO move to AdditionWater
         init(view);
         return view;
     }

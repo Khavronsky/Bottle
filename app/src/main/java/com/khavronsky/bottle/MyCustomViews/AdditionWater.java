@@ -2,10 +2,10 @@ package com.khavronsky.bottle.MyCustomViews;
 
 
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.khavronsky.bottle.Adapters.AdapterToWaterPicsOnViewPagerFragment;
 import com.khavronsky.bottle.Data.DataModelToAddWaterView;
+import com.khavronsky.bottle.Fragments.WaterScreenFragment;
 import com.khavronsky.bottle.R;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     private void firstSetView() {
         slideIndicator.setCountOfCircle(dataModelToAddWaterViewList.size());
         currentCapacityID = dataModelToAddWaterViewList.get(0).getId();
-        adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(((FragmentActivity) context).getSupportFragmentManager(), dataModelToAddWaterViewList);
+        adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(WaterScreenFragment.getChildFragmentManager, dataModelToAddWaterViewList);
         viewPager.setAdapter(adapterToAddWaterFragment);
         plusButton.setOnClickListener(this);
         minusButton.setOnClickListener(this);
@@ -82,6 +83,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
             @Override
             public void onPageSelected(int position) {
                 currentScreen = position;
+                Log.d("MyX", "AdditionWater pos" + position);
                 currentCapacityID = dataModelToAddWaterViewList.get(position).getId();
                 setViewParamFromList(dataModelToAddWaterViewList.get(position));
             }

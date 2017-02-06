@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/water_consumed"
+        android:orderInCategory="100"
+        android:title="Water consumed"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/new_capacity"
+        android:orderInCategory="100"
+        android:title="new capacity"
+        app:showAsAction="always" />
+
+</menu>

@@ -8,15 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestingWithFakeData {
-    private static SparseArray<DataOfWaterConsumed> consumedWaterList = new SparseArray();
+    private static SparseArray<DataOfWaterConsumed> consumedWaterList = new SparseArray(); //TODO change to ArrayList
     private static List<DataModelToAddWaterView> dataModelToAddWaterViewList;
+    private static DataForWaterScreen dataForWaterScreen;
 
     static {
+        createDataModelToAddWaterViewList();
         createDataOfWaterConsumed();
+        createDataForWaterScreen();
+    }
+    private static void createDataForWaterScreen(){
+        dataForWaterScreen = new DataForWaterScreen();
+        dataForWaterScreen.setDataModelToAddWaterViews(dataModelToAddWaterViewList);
+//        dataForWaterScreen.setDateList((List<DataOfWaterConsumed>) consumedWaterList); TODO add DataOfWaterConsumed into a dataForWaterScreen
     }
 
-    public static List<DataModelToAddWaterView> getDataModelToAddWaterViewList() {
+    public static DataForWaterScreen getDataForWaterScreen() {
+        return dataForWaterScreen;
+    }
 
+    private static void createDataModelToAddWaterViewList(){
         DataModelToAddWaterView first = new DataModelToAddWaterView();
         DataModelToAddWaterView second = new DataModelToAddWaterView();
         DataModelToAddWaterView third = new DataModelToAddWaterView();
@@ -40,6 +51,9 @@ public class TestingWithFakeData {
         dataModelToAddWaterViewList.add(first);
         dataModelToAddWaterViewList.add(second);
         dataModelToAddWaterViewList.add(third);
+    }
+
+    public static List<DataModelToAddWaterView> getDataModelToAddWaterViewList() {
         return dataModelToAddWaterViewList;
     }
 
@@ -53,7 +67,7 @@ public class TestingWithFakeData {
         return consumedWaterList.get(date);
     }
 
-    public static void addWaterConsumed(int date, int capacity){
+    public static void addWaterConsumed(int date, int capacity){ //TODO change date to ID
         Log.d("MyLog Fake", "addWaterConsumed: cap" + capacity);
         DataOfWaterConsumed tmp = consumedWaterList.get(date);
         int capacitySumm = tmp.getAmountOfWaterConsumed() + capacity;
@@ -66,15 +80,4 @@ public class TestingWithFakeData {
         consumedWaterList.put(date, tmp);
     }
 
-//    static List<DataForWaterScreen> getDataForWaterScreenList(){
-//        List<DataForWaterScreen> dataForWaterScreenList = new ArrayList<>();
-//        DataForWaterScreen dataForWaterScreen;
-//        for (int i = 1; i <= 31; i++){
-//            dataForWaterScreen = new DataForWaterScreen();
-//            dataForWaterScreen.setDateList(consumedWaterList);
-//            dataForWaterScreen.setDataModelToAddWaterViews(dataModelToAddWaterViewList);
-//            dataForWaterScreenList.add(dataForWaterScreen);
-//        }
-//        return dataForWaterScreenList;
-//    }
 }

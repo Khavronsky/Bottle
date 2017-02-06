@@ -84,6 +84,13 @@
                 android:text="@string/choose_capacity"
                 android:textSize="18sp"
                 android:textColor="@color/grey5"/>
+            <NumberPicker
+                android:id="@+id/numberPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:layout_gravity="center_horizontal"
+                android:width="100dp" />
 
         </FrameLayout>
     </LinearLayout>

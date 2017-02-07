@@ -194,7 +194,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
                 modelOfCapacityType.setTitle(string);
                 modelOfCapacityType.setPics(currentCapacityType);
                 modelOfCapacityType.setCapacityStep(numberPicker.getValue()*50);
-                listener.buttonClick(modelOfCapacityType, newCapacityType);
+                listener.buttonClick(modelOfCapacityType, true);
                 break;
             case R.id.button_del:
                 (Toast.makeText(getContext(), "delete", Toast.LENGTH_SHORT)).show();

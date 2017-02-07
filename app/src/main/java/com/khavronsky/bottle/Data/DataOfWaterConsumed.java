@@ -6,7 +6,14 @@ public class DataOfWaterConsumed {
     private int amountOfWaterConsumed;
     private int waterTarget;
 
-    public DataOfWaterConsumed(int amountOfWaterConsumed, int waterTarget) {
+    public int getDate() {
+        return date;
+    }
+
+    private int date;
+
+    public DataOfWaterConsumed(int date, int amountOfWaterConsumed, int waterTarget) {
+        this.date = date;
         this.amountOfWaterConsumed = amountOfWaterConsumed;
         this.waterTarget = waterTarget;
     }

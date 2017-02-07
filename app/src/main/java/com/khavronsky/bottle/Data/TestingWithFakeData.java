@@ -1,33 +1,26 @@
 package com.khavronsky.bottle.Data;
 
 
-import android.util.Log;
-import android.util.SparseArray;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestingWithFakeData {
-    private static SparseArray<DataOfWaterConsumed> consumedWaterList = new SparseArray(); //TODO change to ArrayList
-    private static List<ModelOfCapacityType> modelOfCapacityTypeList;
+
     private static DataForWaterScreen dataForWaterScreen;
 
+
     static {
+        createDataForWaterScreen();
         createDataModelToAddWaterViewList();
         createDataOfWaterConsumed();
-        createDataForWaterScreen();
+        createDefaultValues();
     }
-    private static void createDataForWaterScreen(){
+
+    private static void createDataForWaterScreen() {
         dataForWaterScreen = new DataForWaterScreen();
-        dataForWaterScreen.setModelOfCapacityTypes(modelOfCapacityTypeList);
-//        dataForWaterScreen.setDateList((List<DataOfWaterConsumed>) consumedWaterList); TODO add DataOfWaterConsumed into a dataForWaterScreen
     }
-
-    public static DataForWaterScreen getDataForWaterScreen() {
-        return dataForWaterScreen;
-    }
-
-    private static void createDataModelToAddWaterViewList(){
+    private static void createDefaultValues(){
+        List<ModelOfCapacityType> defaultValues = new ArrayList<>();
         ModelOfCapacityType first = new ModelOfCapacityType();
         ModelOfCapacityType second = new ModelOfCapacityType();
         ModelOfCapacityType third = new ModelOfCapacityType();
@@ -47,37 +40,81 @@ public class TestingWithFakeData {
         third.setTitle("Glass");
         third.setCapacityStep(250);
 
+        defaultValues.add(first);
+        defaultValues.add(second);
+        defaultValues.add(third);
+
+        dataForWaterScreen.setDefaultValues(defaultValues);
+    }
+
+    public static DataForWaterScreen getDataForWaterScreen() {
+        return dataForWaterScreen;
+    }
+
+    private static void createDataModelToAddWaterViewList() {
+        List<ModelOfCapacityType> modelOfCapacityTypeList;
+        ModelOfCapacityType first = new ModelOfCapacityType();
+        ModelOfCapacityType second = new ModelOfCapacityType();
+        ModelOfCapacityType third = new ModelOfCapacityType();
+        ModelOfCapacityType fourth = new ModelOfCapacityType();
+
+        first.setPics(CapacityType.BOTTLE);
+        first.setId(0);
+        first.setTitle("Bottle");
+        first.setCapacityStep(500);
+
+        second.setPics(CapacityType.DROP);
+        second.setId(1);
+        second.setTitle("Drop");
+        second.setCapacityStep(100);
+
+        third.setPics(CapacityType.GLASS);
+        third.setId(2);
+        third.setTitle("Glass");
+        third.setCapacityStep(250);
+
+        fourth.setPics(CapacityType.DROP);
+        fourth.setId(3);
+        fourth.setTitle("Pipetka");
+        fourth.setCapacityStep(50);
+
         modelOfCapacityTypeList = new ArrayList<>();
         modelOfCapacityTypeList.add(first);
         modelOfCapacityTypeList.add(second);
         modelOfCapacityTypeList.add(third);
+        modelOfCapacityTypeList.add(fourth);
+        dataForWaterScreen.setModelOfCapacityTypes(modelOfCapacityTypeList);
     }
 
     public static List<ModelOfCapacityType> getModelOfCapacityTypeList() {
-        return modelOfCapacityTypeList;
+        return dataForWaterScreen.getModelOfCapacityTypes();
     }
 
-    private static void createDataOfWaterConsumed(){
+    private static void createDataOfWaterConsumed() {
+        List<DataOfWaterConsumed> newList = new ArrayList<>();
         for (int i = 1; i <= 31; i++) {
-            consumedWaterList.put(i, new DataOfWaterConsumed(0, 2000));
+            newList.add(new DataOfWaterConsumed(i, 0, 2000));
         }
+        dataForWaterScreen.setWaterConsumedList(newList);
     }
 
-    public static DataOfWaterConsumed getDataOfWaterConsumed(int date){
-        return consumedWaterList.get(date);
+    public static DataOfWaterConsumed getDataOfWaterConsumed(int date) {
+
+        return dataForWaterScreen.getWaterConsumedList().get(date);
     }
 
-    public static void addWaterConsumed(int date, int capacity){ //TODO change date to ID
-        Log.d("MyLog Fake", "addWaterConsumed: cap" + capacity);
-        DataOfWaterConsumed tmp = consumedWaterList.get(date);
-        int capacitySumm = tmp.getAmountOfWaterConsumed() + capacity;
-        Log.d("MyLog Fake", "addWaterConsumed: capSumm" + capacitySumm);
-
-        if (capacitySumm < 0) {
-            capacitySumm = 0;
+    public static void addWaterConsumed(int date, int dataModelID, boolean b) {
+        DataOfWaterConsumed tmp = dataForWaterScreen.getWaterConsumed(date);
+        int capacityValue = dataForWaterScreen.getModelOfCapacityTypes().get(dataModelID).getCapacityStep();
+        if (!b) {
+            capacityValue *= -1;
         }
-        tmp.setAmountOfWaterConsumed(capacitySumm);
-        consumedWaterList.put(date, tmp);
+        capacityValue += tmp.getAmountOfWaterConsumed();
+        if (capacityValue < 0) {
+            capacityValue = 0;
+        }
+        tmp.setAmountOfWaterConsumed(capacityValue);
+        dataForWaterScreen.getWaterConsumedList().add(dataModelID, tmp);
     }
 
 }

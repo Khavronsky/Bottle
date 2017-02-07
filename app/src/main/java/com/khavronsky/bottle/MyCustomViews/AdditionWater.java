@@ -111,16 +111,16 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         switch (id) {
             case R.id.button_plus:
 
-                buttonListener.buttonPlusOrMinusPressed(currentCapacityID, modelOfCapacityTypeList.get(currentScreen).getCapacityStep());
+                buttonListener.buttonPlusOrMinusPressed(currentCapacityID, true);
                 break;
             case R.id.button_minus:
-                buttonListener.buttonPlusOrMinusPressed(currentCapacityID, -1* modelOfCapacityTypeList.get(currentScreen).getCapacityStep());
+                buttonListener.buttonPlusOrMinusPressed(currentCapacityID, false);
                 break;
         }
     }
 
     public interface ButtonListener {
-        void buttonPlusOrMinusPressed(int dataModelID, int capacity);
+        void buttonPlusOrMinusPressed(int dataModelID, boolean plusOrMinusPressed);
     }
 
     public void setOnButtonPlusMinusListener(ButtonListener buttonListener) {

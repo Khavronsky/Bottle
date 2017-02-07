@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TestingWithFakeData {
     private static SparseArray<DataOfWaterConsumed> consumedWaterList = new SparseArray(); //TODO change to ArrayList
-    private static List<DataModelToAddWaterView> dataModelToAddWaterViewList;
+    private static List<ModelOfCapacityType> modelOfCapacityTypeList;
     private static DataForWaterScreen dataForWaterScreen;
 
     static {
@@ -19,7 +19,7 @@ public class TestingWithFakeData {
     }
     private static void createDataForWaterScreen(){
         dataForWaterScreen = new DataForWaterScreen();
-        dataForWaterScreen.setDataModelToAddWaterViews(dataModelToAddWaterViewList);
+        dataForWaterScreen.setModelOfCapacityTypes(modelOfCapacityTypeList);
 //        dataForWaterScreen.setDateList((List<DataOfWaterConsumed>) consumedWaterList); TODO add DataOfWaterConsumed into a dataForWaterScreen
     }
 
@@ -28,9 +28,9 @@ public class TestingWithFakeData {
     }
 
     private static void createDataModelToAddWaterViewList(){
-        DataModelToAddWaterView first = new DataModelToAddWaterView();
-        DataModelToAddWaterView second = new DataModelToAddWaterView();
-        DataModelToAddWaterView third = new DataModelToAddWaterView();
+        ModelOfCapacityType first = new ModelOfCapacityType();
+        ModelOfCapacityType second = new ModelOfCapacityType();
+        ModelOfCapacityType third = new ModelOfCapacityType();
 
         first.setPics(CapacityType.BOTTLE);
         first.setId(0);
@@ -47,14 +47,14 @@ public class TestingWithFakeData {
         third.setTitle("Glass");
         third.setCapacityStep(250);
 
-        dataModelToAddWaterViewList = new ArrayList<>();
-        dataModelToAddWaterViewList.add(first);
-        dataModelToAddWaterViewList.add(second);
-        dataModelToAddWaterViewList.add(third);
+        modelOfCapacityTypeList = new ArrayList<>();
+        modelOfCapacityTypeList.add(first);
+        modelOfCapacityTypeList.add(second);
+        modelOfCapacityTypeList.add(third);
     }
 
-    public static List<DataModelToAddWaterView> getDataModelToAddWaterViewList() {
-        return dataModelToAddWaterViewList;
+    public static List<ModelOfCapacityType> getModelOfCapacityTypeList() {
+        return modelOfCapacityTypeList;
     }
 
     private static void createDataOfWaterConsumed(){

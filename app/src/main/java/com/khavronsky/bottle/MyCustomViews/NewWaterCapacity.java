@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.khavronsky.bottle.Adapters.AdapterToWaterPicsOnViewPagerFragment;
 import com.khavronsky.bottle.Data.DataForWaterScreen;
-import com.khavronsky.bottle.Data.DataModelToAddWaterView;
+import com.khavronsky.bottle.Data.ModelOfCapacityType;
 import com.khavronsky.bottle.R;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
 
     DataForWaterScreen data;
 
-    private List<DataModelToAddWaterView> dataModelToAddWaterViewList = new ArrayList<>();
+    private List<ModelOfCapacityType> modelOfCapacityTypeList = new ArrayList<>();
     AdapterToWaterPicsOnViewPagerFragment adapter;
     private int currentScreen;
 
@@ -62,7 +62,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
 
     public void setData(DataForWaterScreen data) {
         this.data = data;
-        this.dataModelToAddWaterViewList = data.getDataModelToAddWaterViews();
+        this.modelOfCapacityTypeList = data.getModelOfCapacityTypes();
         firstSetView();
     }
 
@@ -92,10 +92,10 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
         buttonCancel.setOnClickListener(this);
         buttonSave.setOnClickListener(this);
         buttonDel.setOnClickListener(this);
-        slideIndicator.setCountOfCircle(dataModelToAddWaterViewList.size());
+        slideIndicator.setCountOfCircle(modelOfCapacityTypeList.size());
         slideIndicator.setFocusedCircle(currentScreen);
         slideIndicator.invalidate();
-        currentCapacityID = dataModelToAddWaterViewList.get(0).getId();
+        currentCapacityID = modelOfCapacityTypeList.get(0).getId();
         if (childFragmentManager != null){
             setAdapter();
         }
@@ -109,7 +109,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
             public void onPageSelected(int position) {
                 currentScreen = position;
                 Log.d("MyX", "NewWaterCapacity pos" + position);
-                currentCapacityID = dataModelToAddWaterViewList.get(position).getId();
+                currentCapacityID = modelOfCapacityTypeList.get(position).getId();
                 slideIndicator.setFocusedCircle(currentScreen);
                 slideIndicator.invalidate();
             }
@@ -143,7 +143,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
     }
 
     private void setAdapter() {
-        adapter = new AdapterToWaterPicsOnViewPagerFragment(childFragmentManager, dataModelToAddWaterViewList);
+        adapter = new AdapterToWaterPicsOnViewPagerFragment(childFragmentManager, modelOfCapacityTypeList);
         viewPager.setAdapter(adapter);
     }
 

@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.khavronsky.bottle.Adapters.AdapterToWaterPicsOnViewPagerFragment;
-import com.khavronsky.bottle.Data.DataModelToAddWaterView;
+import com.khavronsky.bottle.Data.ModelOfCapacityType;
 import com.khavronsky.bottle.Fragments.WaterScreenFragment;
 import com.khavronsky.bottle.R;
 
@@ -30,7 +30,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
 
     private int currentCapacityID;
     private int currentScreen;
-    private List<DataModelToAddWaterView> dataModelToAddWaterViewList = new ArrayList<>();
+    private List<ModelOfCapacityType> modelOfCapacityTypeList = new ArrayList<>();
     private AdapterToWaterPicsOnViewPagerFragment adapterToAddWaterFragment;
     private ViewPager viewPager;
 
@@ -52,8 +52,8 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         init();
     }
 
-    public void setDataModelToAddWaterViewList(final List<DataModelToAddWaterView> dataModelToAddWaterViewList) {
-        this.dataModelToAddWaterViewList = dataModelToAddWaterViewList;
+    public void setModelOfCapacityTypeList(final List<ModelOfCapacityType> modelOfCapacityTypeList) {
+        this.modelOfCapacityTypeList = modelOfCapacityTypeList;
         firstSetView();
 
     }
@@ -71,21 +71,21 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     }
 
     private void firstSetView() {
-        slideIndicator.setCountOfCircle(dataModelToAddWaterViewList.size());
-        currentCapacityID = dataModelToAddWaterViewList.get(0).getId();
-        adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(WaterScreenFragment.getChildFragmentManager, dataModelToAddWaterViewList);
+        slideIndicator.setCountOfCircle(modelOfCapacityTypeList.size());
+        currentCapacityID = modelOfCapacityTypeList.get(0).getId();
+        adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(WaterScreenFragment.getChildFragmentManager, modelOfCapacityTypeList);
         viewPager.setAdapter(adapterToAddWaterFragment);
         plusButton.setOnClickListener(this);
         minusButton.setOnClickListener(this);
-        setViewParamFromList(dataModelToAddWaterViewList.get(currentScreen));
+        setViewParamFromList(modelOfCapacityTypeList.get(currentScreen));
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 currentScreen = position;
                 Log.d("MyX", "AdditionWater pos" + position);
-                currentCapacityID = dataModelToAddWaterViewList.get(position).getId();
-                setViewParamFromList(dataModelToAddWaterViewList.get(position));
+                currentCapacityID = modelOfCapacityTypeList.get(position).getId();
+                setViewParamFromList(modelOfCapacityTypeList.get(position));
             }
 
             @Override
@@ -98,9 +98,9 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         });
     }
 
-    private void setViewParamFromList(DataModelToAddWaterView dataModelToAddWaterView) {
-        titleCapacity.setText(dataModelToAddWaterView.getTitle());
-        valueOfCapacity.setText(String.valueOf(dataModelToAddWaterView.getCapacityStep()));
+    private void setViewParamFromList(ModelOfCapacityType modelOfCapacityType) {
+        titleCapacity.setText(modelOfCapacityType.getTitle());
+        valueOfCapacity.setText(String.valueOf(modelOfCapacityType.getCapacityStep()));
         slideIndicator.setFocusedCircle(currentScreen);
         slideIndicator.invalidate();
     }
@@ -111,10 +111,10 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         switch (id) {
             case R.id.button_plus:
 
-                buttonListener.buttonPlusOrMinusPressed(currentCapacityID, dataModelToAddWaterViewList.get(currentScreen).getCapacityStep());
+                buttonListener.buttonPlusOrMinusPressed(currentCapacityID, modelOfCapacityTypeList.get(currentScreen).getCapacityStep());
                 break;
             case R.id.button_minus:
-                buttonListener.buttonPlusOrMinusPressed(currentCapacityID, -1*dataModelToAddWaterViewList.get(currentScreen).getCapacityStep());
+                buttonListener.buttonPlusOrMinusPressed(currentCapacityID, -1* modelOfCapacityTypeList.get(currentScreen).getCapacityStep());
                 break;
         }
     }

@@ -5,32 +5,32 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.khavronsky.bottle.Data.DataModelToAddWaterView;
+import com.khavronsky.bottle.Data.ModelOfCapacityType;
 import com.khavronsky.bottle.Fragments.WaterPicsOnViewPagerFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterToWaterPicsOnViewPagerFragment extends FragmentPagerAdapter {
-    private List<DataModelToAddWaterView> dataModelToAddWaterViews = new ArrayList<>();
+    private List<ModelOfCapacityType> modelOfCapacityTypes = new ArrayList<>();
 
-    public AdapterToWaterPicsOnViewPagerFragment(FragmentManager fm, List<DataModelToAddWaterView> dataModelToAddWaterViews) {
+    public AdapterToWaterPicsOnViewPagerFragment(FragmentManager fm, List<ModelOfCapacityType> modelOfCapacityTypes) {
         super(fm);
-        this.dataModelToAddWaterViews = dataModelToAddWaterViews;
+        this.modelOfCapacityTypes = modelOfCapacityTypes;
     }
 
     @Override
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(WaterPicsOnViewPagerFragment.PICS, dataModelToAddWaterViews.get(position).getPics());
+        bundle.putSerializable(WaterPicsOnViewPagerFragment.PICS, modelOfCapacityTypes.get(position).getPics());
         WaterPicsOnViewPagerFragment fragment = new WaterPicsOnViewPagerFragment();
         fragment.setArguments(bundle);
-        fragment.setCapacityType( dataModelToAddWaterViews.get(position).getPics());
+        fragment.setCapacityType( modelOfCapacityTypes.get(position).getPics());
         return fragment;
     }
 
     @Override
     public int getCount() {
-        return dataModelToAddWaterViews.size();
+        return modelOfCapacityTypes.size();
     }
 }

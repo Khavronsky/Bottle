@@ -4,15 +4,15 @@ package com.khavronsky.bottle.Data;
 import java.util.List;
 
 public class DataForWaterScreen {
-    private List<DataModelToAddWaterView> dataModelToAddWaterViews;
+    private List<ModelOfCapacityType> modelOfCapacityTypes;
     private List<DataOfWaterConsumed> dateList;
 
-    public List<DataModelToAddWaterView> getDataModelToAddWaterViews() {
-        return dataModelToAddWaterViews;
+    public List<ModelOfCapacityType> getModelOfCapacityTypes() {
+        return modelOfCapacityTypes;
     }
 
-    public void setDataModelToAddWaterViews(List<DataModelToAddWaterView> dataModelToAddWaterViews) {
-        this.dataModelToAddWaterViews = dataModelToAddWaterViews;
+    public void setModelOfCapacityTypes(List<ModelOfCapacityType> modelOfCapacityTypes) {
+        this.modelOfCapacityTypes = modelOfCapacityTypes;
     }
 
     public List<DataOfWaterConsumed> getDateList() {

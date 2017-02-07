@@ -21,7 +21,7 @@ public class NewWaterCapacityFragment extends Fragment {
         View view = inflater.inflate(R.layout.new_water_capacity_fragment, container, false);
         newWaterCapacity = (NewWaterCapacity) view.findViewById(R.id.new_water_capacity_in_fragment);
         newWaterCapacity.setChildFragmentManager(getChildFragmentManager());
-//        newWaterCapacity.setDataModelToAddWaterViewList(TestingWithFakeData.getDataModelToAddWaterViewList());
+//        newWaterCapacity.setModelOfCapacityTypeList(TestingWithFakeData.getModelOfCapacityTypeList());
         newWaterCapacity.setData(TestingWithFakeData.getDataForWaterScreen());
         return view;
     }

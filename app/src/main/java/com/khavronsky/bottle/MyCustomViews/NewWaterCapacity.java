@@ -24,7 +24,6 @@ import com.khavronsky.bottle.R;
 import java.util.List;
 
 public class NewWaterCapacity extends CardView implements View.OnClickListener {
-    private final Context context;
     TextView title;
     TextView buttonDel;
     TextView buttonCancel;
@@ -33,7 +32,6 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
     ViewPager viewPager;
     NumberPicker numberPicker;
     CirclesSlideIndicator slideIndicator;
-    private int currentCapacityID;
     private CapacityType currentCapacityType = CapacityType.BOTTLE;
     FragmentManager childFragmentManager;
 
@@ -46,24 +44,21 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
 
     public NewWaterCapacity(Context context) {
         super(context);
-        this.context = context;
         init();
     }
 
     public NewWaterCapacity(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context = context;
         init();
     }
 
     public NewWaterCapacity(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context = context;
         init();
     }
 
     public void setData(ModelOfCapacityType modelOfCapacityType) {
-        if(modelOfCapacityType != null) {
+        if (modelOfCapacityType != null) {
             this.modelOfCapacityType = modelOfCapacityType;
             newCapacityType = false;
         } else {
@@ -72,7 +67,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
         firstSetView();
     }
 
-    public void setChildFragmentManager(FragmentManager childFragmentManager) {
+    public void setFragmentManager(FragmentManager childFragmentManager) {
         if (viewPager != null) {
             this.childFragmentManager = childFragmentManager;
         }
@@ -167,33 +162,47 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
         viewPager.setAdapter(adapter);
     }
 
+    public enum ButtonBehavior {
+        CREATE_NEW_TYPE,
+        CHANGE_TYPE,
+        DELETE_TYPE,
+        CLOSE_WINDOW
+    }
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
+        ButtonBehavior behavior = null;
         switch (id) {
             case R.id.button_cancel:
                 (Toast.makeText(getContext(), "cancel", Toast.LENGTH_SHORT)).show();
-                listener.buttonClick(null, false);
+                behavior = ButtonBehavior.CLOSE_WINDOW;
                 break;
             case R.id.button_save:
                 (Toast.makeText(getContext(), "save", Toast.LENGTH_SHORT)).show();
                 String string = String.valueOf(inputTitle.getText());
                 modelOfCapacityType.setTitle(string);
                 modelOfCapacityType.setPics(currentCapacityType);
-                modelOfCapacityType.setCapacityStep(numberPicker.getValue()*50);
-                listener.buttonClick(modelOfCapacityType, true);
+                modelOfCapacityType.setCapacityStep(numberPicker.getValue() * 50);
+                if (newCapacityType) {
+                    behavior = ButtonBehavior.CREATE_NEW_TYPE;
+                } else {
+                    behavior = ButtonBehavior.CHANGE_TYPE;
+                }
                 break;
             case R.id.button_del:
                 (Toast.makeText(getContext(), "delete", Toast.LENGTH_SHORT)).show();
-                listener.buttonClick(modelOfCapacityType, false);
+                behavior = ButtonBehavior.DELETE_TYPE;
                 break;
         }
+        listener.buttonClick(modelOfCapacityType, behavior);
     }
 
-    public interface ButtonListener{
-        void buttonClick(ModelOfCapacityType modelOfCapacityType, boolean newType);
+    public interface ButtonListener {
+        void buttonClick(ModelOfCapacityType modelOfCapacityType, ButtonBehavior behavior);
     }
-    public void subscribeToButtonListener(ButtonListener listener){
+
+    public void subscribeToButtonListener(ButtonListener listener) {
         this.listener = listener;
     }
 }

@@ -7,9 +7,6 @@ public class ModelOfCapacityType {
     private CapacityType pics;
     private String title;
     private int capacityStep;
-    public CapacityType getPics() {
-        return pics;
-    }
 
     public int getId() {
         return id;
@@ -17,6 +14,10 @@ public class ModelOfCapacityType {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public CapacityType getPics() {
+        return pics;
     }
 
     public void setPics(CapacityType pics) {

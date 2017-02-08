@@ -19,7 +19,8 @@ public class TestingWithFakeData {
     private static void createDataForWaterScreen() {
         dataForWaterScreen = new DataForWaterScreen();
     }
-    private static void createDefaultValues(){
+
+    private static void createDefaultValues() {
         List<ModelOfCapacityType> defaultValues = new ArrayList<>();
         ModelOfCapacityType first = new ModelOfCapacityType();
         ModelOfCapacityType second = new ModelOfCapacityType();
@@ -45,10 +46,6 @@ public class TestingWithFakeData {
         defaultValues.add(third);
 
         dataForWaterScreen.setDefaultValues(defaultValues);
-    }
-
-    public static DataForWaterScreen getDataForWaterScreen() {
-        return dataForWaterScreen;
     }
 
     private static void createDataModelToAddWaterViewList() {
@@ -86,10 +83,6 @@ public class TestingWithFakeData {
         dataForWaterScreen.setModelOfCapacityTypes(modelOfCapacityTypeList);
     }
 
-    public static List<ModelOfCapacityType> getModelOfCapacityTypeList() {
-        return dataForWaterScreen.getModelOfCapacityTypes();
-    }
-
     private static void createDataOfWaterConsumed() {
         List<DataOfWaterConsumed> newList = new ArrayList<>();
         for (int i = 1; i <= 31; i++) {
@@ -98,8 +91,15 @@ public class TestingWithFakeData {
         dataForWaterScreen.setWaterConsumedList(newList);
     }
 
-    public static DataOfWaterConsumed getDataOfWaterConsumed(int date) {
+    public static DataForWaterScreen getDataForWaterScreen() {
+        return dataForWaterScreen;
+    }
 
+    public static List<ModelOfCapacityType> getModelOfCapacityTypeList() {
+        return dataForWaterScreen.getModelOfCapacityTypes();
+    }
+
+    public static DataOfWaterConsumed getDataOfWaterConsumed(int date) {
         return dataForWaterScreen.getWaterConsumed(date);
     }
 
@@ -116,5 +116,4 @@ public class TestingWithFakeData {
         tmp.setAmountOfWaterConsumed(capacityValue);
         dataForWaterScreen.getWaterConsumedList().add(dataModelID, tmp);
     }
-
 }

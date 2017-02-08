@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,10 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//            getSupportActionBar().setHomeButtonEnabled(true);
-//        }
     }
 
     public void startFragment(Fragment fragment) {
@@ -54,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         switch (id) {
             case (R.id.water_consumed):
                 startFragment(new WaterScreenFragment());
-                Log.d("MyLog", "startFragment");
                 break;
             case (R.id.new_capacity):
                 startFragment(new NewWaterCapacityFragment());

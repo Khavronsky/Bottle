@@ -48,6 +48,7 @@ public class CirclesSlideIndicator extends View {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
+
     private void init(AttributeSet attrs) {
         setMinimumWidth(MIN_WIDTH);
         setMinimumHeight(MIN_HEIGHT);
@@ -55,7 +56,8 @@ public class CirclesSlideIndicator extends View {
 
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
-    private void setupAttributes(AttributeSet attrs){
+
+    private void setupAttributes(AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CirclesSlideIndicator);
         radius = (int) a.getDimension(R.styleable.CirclesSlideIndicator_radius, DEFAULT_RADIUS);
         margin = (int) a.getDimension(R.styleable.CirclesSlideIndicator_margin, DEFAULT_MARGIN);
@@ -118,5 +120,4 @@ public class CirclesSlideIndicator extends View {
             canvas.drawCircle(firstCircleCoordinate + i * margin, myHeight / 2, radius, paint);
         }
     }
-
 }

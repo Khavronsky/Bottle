@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdditionWater extends CardView implements View.OnClickListener {
-    private final Context context;
     private ImageButton plusButton;
     private ImageButton minusButton;
     private CirclesSlideIndicator slideIndicator;
@@ -37,19 +35,16 @@ public class AdditionWater extends CardView implements View.OnClickListener {
 
     public AdditionWater(Context context) {
         super(context);
-        this.context = context;
         init();
     }
 
     public AdditionWater(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context = context;
         init();
     }
 
     public AdditionWater(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context = context;
         init();
     }
 
@@ -58,7 +53,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         firstSetView();
     }
 
-    public void setChildFragmentManager(FragmentManager childFragmentManager) {
+    public void setFragmentManager(FragmentManager childFragmentManager) {
         if (viewPager != null) {
             this.childFragmentManager = childFragmentManager;
         }
@@ -96,7 +91,6 @@ public class AdditionWater extends CardView implements View.OnClickListener {
             @Override
             public void onPageSelected(int position) {
                 currentScreen = position;
-                Log.d("MyX", "AdditionWater pos" + position);
                 currentCapacityID = modelOfCapacityTypeList.get(position).getId();
                 setViewParamFromList(modelOfCapacityTypeList.get(position));
             }
@@ -123,7 +117,6 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         int id = v.getId();
         switch (id) {
             case R.id.button_plus:
-
                 buttonListener.buttonPlusOrMinusPressed(currentCapacityID, true);
                 break;
             case R.id.button_minus:

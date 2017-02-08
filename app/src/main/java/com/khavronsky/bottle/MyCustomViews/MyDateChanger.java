@@ -4,7 +4,6 @@ package com.khavronsky.bottle.MyCustomViews;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,14 +13,12 @@ import com.khavronsky.bottle.R;
 
 public class MyDateChanger extends CardView implements View.OnClickListener {
     private final static String TAG = "MyLog MyDateChanger";
-
     private int currentDate = 15;
 
     ImageButton previousDate;
     ImageButton nextDate;
     TextView showDate;
     IDateChanged event;
-
 
     public interface IDateChanged {
         void changesHappened();
@@ -47,7 +44,6 @@ public class MyDateChanger extends CardView implements View.OnClickListener {
     }
 
     private void init() {
-        Log.d(TAG, "init: ");
         LayoutInflater inflater = LayoutInflater.from(getContext());
         inflater.inflate(R.layout.my_date_changer, this);
 
@@ -73,7 +69,6 @@ public class MyDateChanger extends CardView implements View.OnClickListener {
                     currentDate++;
                     event.changesHappened();
                     showCurrentDate();
-                    Log.d(TAG, "onClick: next date");
                 }
                 break;
             case (R.id.previous_date):
@@ -81,7 +76,6 @@ public class MyDateChanger extends CardView implements View.OnClickListener {
                     currentDate--;
                     event.changesHappened();
                     showCurrentDate();
-                    Log.d(TAG, "onClick: previous date");
                 }
                 break;
         }

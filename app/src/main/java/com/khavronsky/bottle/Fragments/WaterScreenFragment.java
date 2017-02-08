@@ -33,9 +33,8 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
     }
 
     private void init(View view) {
-        Log.d(TAG, "init:");
         additionWater = (AdditionWater) view.findViewById(R.id.addition_water);
-        additionWater.setChildFragmentManager(getChildFragmentManager());
+        additionWater.setFragmentManager(getChildFragmentManager());
         dateChanger = (MyDateChanger) view.findViewById(R.id.date_changer);
         currentDate = dateChanger.getCurrentDate();
         presenter = new WaterScreenPresenter();
@@ -44,7 +43,6 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
             @Override
             public void changesHappened() {
                 currentDate = dateChanger.getCurrentDate();
-                Log.d(TAG, "presenter: " + presenter + " date " + currentDate);
                 presenter.getDate(currentDate);
             }
         });

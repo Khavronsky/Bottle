@@ -4,7 +4,6 @@ package com.khavronsky.bottle.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import com.khavronsky.bottle.Data.CapacityType;
 import com.khavronsky.bottle.R;
 
 public class WaterPicsOnViewPagerFragment extends Fragment {
+
     public static final String PICS = "pics";
 
     ImageView imageView;
@@ -40,8 +40,10 @@ public class WaterPicsOnViewPagerFragment extends Fragment {
     }
 
     private void setCapacityTypeImage(CapacityType capacityType) {
-        //this.capacityType = capacityType;
-        if (imageView != null) imageView.setImageResource(capacityType.getRes());
-        Log.d("MyX", "setCapacityTypeImage" + capacityType);
+
+        if (imageView != null) {
+            imageView.setImageResource(capacityType.getRes());
+        }
+
     }
 }

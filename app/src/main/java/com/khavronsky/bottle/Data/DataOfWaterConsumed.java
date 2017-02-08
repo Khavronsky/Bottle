@@ -5,11 +5,6 @@ public class DataOfWaterConsumed {
 
     private int amountOfWaterConsumed;
     private int waterTarget;
-
-    public int getDate() {
-        return date;
-    }
-
     private int date;
 
     public DataOfWaterConsumed(int date, int amountOfWaterConsumed, int waterTarget) {
@@ -18,8 +13,12 @@ public class DataOfWaterConsumed {
         this.waterTarget = waterTarget;
     }
 
-    public DataOfWaterConsumed() {
+    public int getDate() {
+        return date;
+    }
 
+    public void setDate(int date) {
+        this.date = date;
     }
 
     public int getAmountOfWaterConsumed() {

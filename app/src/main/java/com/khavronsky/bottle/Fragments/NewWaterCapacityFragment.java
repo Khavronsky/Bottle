@@ -23,19 +23,32 @@ public class NewWaterCapacityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_water_capacity_fragment, container, false);
         newWaterCapacity = (NewWaterCapacity) view.findViewById(R.id.new_water_capacity_in_fragment);
-        newWaterCapacity.setChildFragmentManager(getChildFragmentManager());
-//        newWaterCapacity.setData(TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().get(3));
-        newWaterCapacity.setData(null);
+        newWaterCapacity.setFragmentManager(getChildFragmentManager());
+        if (TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().size() > 3) {
+            newWaterCapacity.setData(TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().get(3));
+        } else {
+            newWaterCapacity.setData(null);
+        }
         newWaterCapacity.subscribeToButtonListener(new NewWaterCapacity.ButtonListener() {
             @Override
-            public void buttonClick(ModelOfCapacityType modelOfCapacityType, boolean newType) {
-                if (modelOfCapacityType != null){
-                    if(newType){
+            public void buttonClick(ModelOfCapacityType modelOfCapacityType, NewWaterCapacity.ButtonBehavior behavior) {
+                switch (behavior) {
+                    case CREATE_NEW_TYPE:
                         modelOfCapacityType.setId(TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().size());
                         List<ModelOfCapacityType> list = TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes();
                         list.add(modelOfCapacityType);
                         TestingWithFakeData.getDataForWaterScreen().setModelOfCapacityTypes(list);
-                    }
+                        break;
+                    case CHANGE_TYPE:
+                        TestingWithFakeData.getDataForWaterScreen().replaceCapacityType(modelOfCapacityType);
+                        break;
+                    case DELETE_TYPE:
+                        TestingWithFakeData.getDataForWaterScreen().removeCapacityType(modelOfCapacityType);
+                        getActivity().onBackPressed();
+                        break;
+                    case CLOSE_WINDOW:
+                        getActivity().onBackPressed();
+                        break;
                 }
             }
         });

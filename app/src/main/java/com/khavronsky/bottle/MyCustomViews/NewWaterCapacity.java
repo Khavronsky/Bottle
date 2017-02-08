@@ -120,18 +120,6 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
     private void setSlideIndicator() {
         slideIndicator.setCountOfCircle(defaultValues.size());
         slideIndicator.setFocusedCircle(currentCapacityType.ordinal());
-//        switch (currentCapacityType) {
-//            case BOTTLE:
-//                slideIndicator.setFocusedCircle(0);
-//                break;
-//            case GLASS:
-//                slideIndicator.setFocusedCircle(1);
-//                break;
-//            case DROP:
-//                slideIndicator.setFocusedCircle(2);
-//                break;
-//        }
-
         slideIndicator.invalidate();
     }
 
@@ -189,8 +177,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
                 break;
             case R.id.button_save:
                 (Toast.makeText(getContext(), "save", Toast.LENGTH_SHORT)).show();
-//                String string = String.valueOf(inputTitle.getText());
-                String string = "testest";
+                String string = String.valueOf(inputTitle.getText());
                 modelOfCapacityType.setTitle(string);
                 modelOfCapacityType.setPics(currentCapacityType);
                 modelOfCapacityType.setCapacityStep(numberPicker.getValue()*50);

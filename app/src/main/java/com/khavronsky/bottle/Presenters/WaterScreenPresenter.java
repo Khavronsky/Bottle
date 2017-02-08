@@ -28,7 +28,7 @@ public class WaterScreenPresenter extends AbstractPresenter<WaterScreenPresenter
 
     public void addConsumedWater(int currentDate, int dataModelID, boolean addOrSubtract){
         TestingWithFakeData.addWaterConsumed(currentDate, dataModelID, addOrSubtract);
-        getDate(dataModelID);
+        getDate(currentDate);
     }
 
     public interface IView {

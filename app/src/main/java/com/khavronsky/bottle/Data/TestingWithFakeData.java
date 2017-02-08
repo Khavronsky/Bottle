@@ -100,7 +100,7 @@ public class TestingWithFakeData {
 
     public static DataOfWaterConsumed getDataOfWaterConsumed(int date) {
 
-        return dataForWaterScreen.getWaterConsumedList().get(date);
+        return dataForWaterScreen.getWaterConsumed(date);
     }
 
     public static void addWaterConsumed(int date, int dataModelID, boolean b) {

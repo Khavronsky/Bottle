@@ -100,8 +100,8 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
         additionWater.setModelOfCapacityTypeList(TestingWithFakeData.getModelOfCapacityTypeList());
         additionWater.setOnButtonPlusMinusListener(new AdditionWater.ButtonListener() {
             @Override
-            public void buttonPlusOrMinusPressed(int dataModelID, boolean plusOrMinuspressed) {
-                presenter.addConsumedWater(currentDate, dataModelID, plusOrMinuspressed);
+            public void buttonPlusOrMinusPressed(int dataModelID, boolean plusOrMinusPressed) {
+                presenter.addConsumedWater(currentDate, dataModelID, plusOrMinusPressed);
             }
         });
     }

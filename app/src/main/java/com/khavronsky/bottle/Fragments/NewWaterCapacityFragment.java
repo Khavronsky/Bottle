@@ -38,18 +38,14 @@ public class NewWaterCapacityFragment extends Fragment {
                         List<ModelOfCapacityType> list = TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes();
                         list.add(modelOfCapacityType);
                         TestingWithFakeData.getDataForWaterScreen().setModelOfCapacityTypes(list);
-                        break;
                     case CHANGE_TYPE:
                         TestingWithFakeData.getDataForWaterScreen().replaceCapacityType(modelOfCapacityType);
                         break;
                     case DELETE_TYPE:
                         TestingWithFakeData.getDataForWaterScreen().removeCapacityType(modelOfCapacityType);
-                        getActivity().onBackPressed();
-                        break;
-                    case CLOSE_WINDOW:
-                        getActivity().onBackPressed();
                         break;
                 }
+                getActivity().onBackPressed();
             }
         });
         return view;

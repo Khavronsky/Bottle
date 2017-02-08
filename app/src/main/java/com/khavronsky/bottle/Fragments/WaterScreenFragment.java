@@ -26,14 +26,36 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
     WaterScreenPresenter presenter;
     TextView showConsumedWater;
 
-   public static android.support.v4.app.FragmentManager getChildFragmentManager = null; //TODO move to AdditionWater
-
-
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.water_screen_fragment, container, false);
-        getChildFragmentManager = getChildFragmentManager(); //TODO move to AdditionWater
         init(view);
         return view;
+    }
+
+    private void init(View view) {
+        Log.d(TAG, "init:");
+        additionWater = (AdditionWater) view.findViewById(R.id.addition_water);
+        additionWater.setChildFragmentManager(getChildFragmentManager());
+        dateChanger = (MyDateChanger) view.findViewById(R.id.date_changer);
+        currentDate = dateChanger.getCurrentDate();
+        presenter = new WaterScreenPresenter();
+        showConsumedWater = (TextView) view.findViewById(R.id.consumed_water);
+        dateChanger.subscribeToChanges(new MyDateChanger.IDateChanged() {
+            @Override
+            public void changesHappened() {
+                currentDate = dateChanger.getCurrentDate();
+                Log.d(TAG, "presenter: " + presenter + " date " + currentDate);
+                presenter.getDate(currentDate);
+            }
+        });
+
+        additionWater.setModelOfCapacityTypeList(TestingWithFakeData.getModelOfCapacityTypeList());
+        additionWater.setOnButtonPlusMinusListener(new AdditionWater.ButtonListener() {
+            @Override
+            public void buttonPlusOrMinusPressed(int dataModelID, boolean plusOrMinusPressed) {
+                presenter.addConsumedWater(currentDate, dataModelID, plusOrMinusPressed);
+            }
+        });
     }
 
     @Override
@@ -79,31 +101,6 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
         }
         showData = showData + " л";
         return showData;
-    }
-
-    private void init(View view) {
-        Log.d(TAG, "init:");
-        additionWater = (AdditionWater) view.findViewById(R.id.addition_water);
-        dateChanger = (MyDateChanger) view.findViewById(R.id.date_changer);
-        currentDate = dateChanger.getCurrentDate();
-        presenter = new WaterScreenPresenter();
-        showConsumedWater = (TextView) view.findViewById(R.id.consumed_water);
-        dateChanger.subscribeToChanges(new MyDateChanger.IDateChanged() {
-            @Override
-            public void changesHappened() {
-                currentDate = dateChanger.getCurrentDate();
-                Log.d(TAG, "presenter: " + presenter + " date " + currentDate);
-                presenter.getDate(currentDate);
-            }
-        });
-
-        additionWater.setModelOfCapacityTypeList(TestingWithFakeData.getModelOfCapacityTypeList());
-        additionWater.setOnButtonPlusMinusListener(new AdditionWater.ButtonListener() {
-            @Override
-            public void buttonPlusOrMinusPressed(int dataModelID, boolean plusOrMinusPressed) {
-                presenter.addConsumedWater(currentDate, dataModelID, plusOrMinusPressed);
-            }
-        });
     }
 
     @Override

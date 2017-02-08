@@ -2,6 +2,7 @@ package com.khavronsky.bottle.MyCustomViews;
 
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 
 import com.khavronsky.bottle.Adapters.AdapterToWaterPicsOnViewPagerFragment;
 import com.khavronsky.bottle.Data.ModelOfCapacityType;
-import com.khavronsky.bottle.Fragments.WaterScreenFragment;
 import com.khavronsky.bottle.R;
 
 import java.util.ArrayList;
@@ -33,6 +33,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     private List<ModelOfCapacityType> modelOfCapacityTypeList = new ArrayList<>();
     private AdapterToWaterPicsOnViewPagerFragment adapterToAddWaterFragment;
     private ViewPager viewPager;
+    private FragmentManager childFragmentManager;
 
     public AdditionWater(Context context) {
         super(context);
@@ -55,7 +56,18 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     public void setModelOfCapacityTypeList(final List<ModelOfCapacityType> modelOfCapacityTypeList) {
         this.modelOfCapacityTypeList = modelOfCapacityTypeList;
         firstSetView();
+    }
 
+    public void setChildFragmentManager(FragmentManager childFragmentManager) {
+        if (viewPager != null) {
+            this.childFragmentManager = childFragmentManager;
+        }
+        setAdapter();
+    }
+
+    private void setAdapter() {
+        adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(childFragmentManager, modelOfCapacityTypeList);
+        viewPager.setAdapter(adapterToAddWaterFragment);
     }
 
     private void init() {
@@ -73,8 +85,9 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     private void firstSetView() {
         slideIndicator.setCountOfCircle(modelOfCapacityTypeList.size());
         currentCapacityID = modelOfCapacityTypeList.get(0).getId();
-        adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(WaterScreenFragment.getChildFragmentManager, modelOfCapacityTypeList);
-        viewPager.setAdapter(adapterToAddWaterFragment);
+        if (childFragmentManager != null) {
+            setAdapter();
+        }
         plusButton.setOnClickListener(this);
         minusButton.setOnClickListener(this);
         setViewParamFromList(modelOfCapacityTypeList.get(currentScreen));

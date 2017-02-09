@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -29,7 +30,6 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     private int currentCapacityID;
     private int currentScreen;
     private List<ModelOfCapacityType> modelOfCapacityTypeList = new ArrayList<>();
-    private AdapterToWaterPicsOnViewPagerFragment adapterToAddWaterFragment;
     private ViewPager viewPager;
     private FragmentManager childFragmentManager;
 
@@ -61,7 +61,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     }
 
     private void setAdapter() {
-        adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(childFragmentManager, modelOfCapacityTypeList);
+        AdapterToWaterPicsOnViewPagerFragment adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(childFragmentManager, modelOfCapacityTypeList);
         viewPager.setAdapter(adapterToAddWaterFragment);
     }
 
@@ -70,6 +70,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         inflater.inflate(R.layout.addition_water, this);
 
         plusButton = (ImageButton) findViewById(R.id.button_plus);
+        plusButton.setHapticFeedbackEnabled(true);
         minusButton = (ImageButton) findViewById(R.id.button_minus);
         titleCapacity = (TextView) findViewById(R.id.tv_title_of_capacity);
         valueOfCapacity = (TextView) findViewById(R.id.tv_value_of_capacity);
@@ -115,8 +116,12 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int id = v.getId();
+        v.setHapticFeedbackEnabled(true);
         switch (id) {
             case R.id.button_plus:
+                performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                plusButton.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 buttonListener.buttonPlusOrMinusPressed(currentCapacityID, true);
                 break;
             case R.id.button_minus:

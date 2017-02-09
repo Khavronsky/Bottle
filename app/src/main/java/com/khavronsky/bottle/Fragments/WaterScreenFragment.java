@@ -4,7 +4,6 @@ package com.khavronsky.bottle.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +13,12 @@ import com.khavronsky.bottle.Data.DataOfWaterConsumed;
 import com.khavronsky.bottle.Data.TestingWithFakeData;
 import com.khavronsky.bottle.MyCustomViews.AdditionWater;
 import com.khavronsky.bottle.MyCustomViews.MyDateChanger;
-import com.khavronsky.bottle.R;
 import com.khavronsky.bottle.Presenters.WaterScreenPresenter;
+import com.khavronsky.bottle.R;
 
 public class WaterScreenFragment extends Fragment implements WaterScreenPresenter.IView {
 
-    private final static String TAG = "MyLog WaterScreenFragment";
     int currentDate;
-    AdditionWater additionWater;
-    MyDateChanger dateChanger;
     WaterScreenPresenter presenter;
     TextView showConsumedWater;
 
@@ -33,9 +29,9 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
     }
 
     private void init(View view) {
-        additionWater = (AdditionWater) view.findViewById(R.id.addition_water);
+        AdditionWater additionWater = (AdditionWater) view.findViewById(R.id.addition_water);
         additionWater.setFragmentManager(getChildFragmentManager());
-        dateChanger = (MyDateChanger) view.findViewById(R.id.date_changer);
+        final MyDateChanger dateChanger = (MyDateChanger) view.findViewById(R.id.date_changer);
         currentDate = dateChanger.getCurrentDate();
         presenter = new WaterScreenPresenter();
         showConsumedWater = (TextView) view.findViewById(R.id.consumed_water);

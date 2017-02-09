@@ -41,7 +41,7 @@ public class WaterPicsOnViewPagerFragment extends Fragment {
 
     private void setCapacityTypeImage(CapacityType capacityType) {
 
-        if (imageView != null) {
+        if (imageView != null && capacityType != null) {
             imageView.setImageResource(capacityType.getRes());
         }
 

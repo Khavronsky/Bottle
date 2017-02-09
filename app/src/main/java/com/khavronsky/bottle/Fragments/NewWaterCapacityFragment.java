@@ -16,13 +16,12 @@ import java.util.List;
 
 
 public class NewWaterCapacityFragment extends Fragment {
-    NewWaterCapacity newWaterCapacity;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_water_capacity_fragment, container, false);
-        newWaterCapacity = (NewWaterCapacity) view.findViewById(R.id.new_water_capacity_in_fragment);
+        NewWaterCapacity newWaterCapacity = (NewWaterCapacity) view.findViewById(R.id.new_water_capacity_in_fragment);
         newWaterCapacity.setFragmentManager(getChildFragmentManager());
         if (TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().size() > 3) {
             newWaterCapacity.setData(TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().get(3));

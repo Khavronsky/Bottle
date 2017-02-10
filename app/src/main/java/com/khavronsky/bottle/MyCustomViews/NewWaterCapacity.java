@@ -3,13 +3,16 @@ package com.khavronsky.bottle.MyCustomViews;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +30,9 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
     TextView buttonDel;
     TextView buttonCancel;
     TextView buttonSave;
-    EditText inputTitle;
+    TextInputEditText inputTitle;
+    TextInputLayout textInputLayout;
+    boolean titleIsCorrect = false;
     ViewPager viewPager;
     NumberPicker numberPicker;
     CirclesSlideIndicator slideIndicator;
@@ -75,16 +80,16 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         inflater.inflate(R.layout.new_water_capacity, this);
 
+        textInputLayout = (TextInputLayout) findViewById(R.id.text_input_layout);
         defaultValues = TestingWithFakeData.getDataForWaterScreen().getDefaultValues();
         title = (TextView) findViewById(R.id.capacity_title);
         buttonDel = (TextView) findViewById(R.id.button_del);
         buttonCancel = (TextView) findViewById(R.id.button_cancel);
         buttonSave = (TextView) findViewById(R.id.button_save);
-        inputTitle = (EditText) findViewById(R.id.edit_capacity_title);
+        inputTitle = (TextInputEditText) findViewById(R.id.edit_capacity_title);
         slideIndicator = (CirclesSlideIndicator) findViewById(R.id.circlesSlideIndicator);
         viewPager = (ViewPager) findViewById(R.id.my_pager);
         numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
-
     }
 
     private void firstSetView() {
@@ -92,6 +97,29 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
         buttonSave.setOnClickListener(this);
         buttonDel.setOnClickListener(this);
         buttonDel.setVisibility(INVISIBLE);
+        inputTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String ss = s.toString();
+                if (ss.matches("[A-Za-zА-Яа-я- ]+")) {
+                    textInputLayout.setError("");
+                    textInputLayout.setErrorEnabled(false);
+                    titleIsCorrect = true;
+                } else {
+                    textInputLayout.setErrorEnabled(true);
+                    textInputLayout.setError("ОЙ-ОЙ-ОЙ");
+                    titleIsCorrect = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         setSlideIndicator();
         setAdapter();
@@ -166,31 +194,38 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
         int id = v.getId();
         ButtonBehavior behavior = null;
         switch (id) {
             case R.id.button_cancel:
                 (Toast.makeText(getContext(), "cancel", Toast.LENGTH_SHORT)).show();
                 behavior = ButtonBehavior.CLOSE_WINDOW;
+                listener.buttonClick(modelOfCapacityType, behavior);
                 break;
             case R.id.button_save:
-                (Toast.makeText(getContext(), "save", Toast.LENGTH_SHORT)).show();
-                String string = String.valueOf(inputTitle.getText());
-                modelOfCapacityType.setTitle(string);
-                modelOfCapacityType.setPics(currentCapacityType);
-                modelOfCapacityType.setCapacityStep(numberPicker.getValue() * 50);
-                if (newCapacityType) {
-                    behavior = ButtonBehavior.CREATE_NEW_TYPE;
+                if (titleIsCorrect) {
+                    (Toast.makeText(getContext(), "save", Toast.LENGTH_SHORT)).show();
+                    String string = String.valueOf(inputTitle.getText());
+                    modelOfCapacityType.setTitle(string);
+                    modelOfCapacityType.setPics(currentCapacityType);
+                    modelOfCapacityType.setCapacityStep(numberPicker.getValue() * 50);
+                    if (newCapacityType) {
+                        behavior = ButtonBehavior.CREATE_NEW_TYPE;
+                    } else {
+                        behavior = ButtonBehavior.CHANGE_TYPE;
+                    }
+                    listener.buttonClick(modelOfCapacityType, behavior);
                 } else {
-                    behavior = ButtonBehavior.CHANGE_TYPE;
+                    (Toast.makeText(getContext(), "ОЙ-ОЙ-ОЙ, НИЗЬЗЯ НАЖИМАТЬ", Toast.LENGTH_SHORT)).show();
                 }
                 break;
             case R.id.button_del:
                 (Toast.makeText(getContext(), "delete", Toast.LENGTH_SHORT)).show();
                 behavior = ButtonBehavior.DELETE_TYPE;
+                listener.buttonClick(modelOfCapacityType, behavior);
                 break;
         }
-        listener.buttonClick(modelOfCapacityType, behavior);
     }
 
     public interface ButtonListener {

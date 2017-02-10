@@ -13,8 +13,7 @@ import com.khavronsky.bottle.Fragments.WaterScreenFragment;
 import com.khavronsky.bottle.R;
 
 public class MainActivity extends AppCompatActivity {
-    Fragment fragment1;
-    Fragment fragment2;
+//    Fragment fragment1;jhhhj
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        fragment1 = new WaterScreenFragment();
-        fragment2 = new NewWaterCapacityFragment();
+//        fragment1 = new WaterScreenFragment();
+//        fragment2 = new NewWaterCapacityFragment();
     }
 
     public void startFragment(Fragment fragment) {
@@ -50,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case (R.id.water_consumed):
-                startFragment(fragment1);
+                startFragment(new WaterScreenFragment());
                 break;
             case (R.id.new_capacity):
-                startFragment(fragment2);
+                startFragment(new NewWaterCapacityFragment());
                 break;
         }
         return super.onOptionsItemSelected(item);

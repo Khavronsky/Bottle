@@ -6,7 +6,7 @@ import com.khavronsky.bottle.Data.TestingWithFakeData;
 
 public class WaterScreenPresenter extends AbstractPresenter<WaterScreenPresenter.IView> {
 
-    public void getDate(int date) {
+    public void refreshData(int date) {
         if (getMyObj() != null){
             getMyObj().show(TestingWithFakeData.getDataOfWaterConsumed(date));
         }
@@ -14,7 +14,7 @@ public class WaterScreenPresenter extends AbstractPresenter<WaterScreenPresenter
 
     public void addConsumedWater(int currentDate, int dataModelID, boolean addOrSubtract){
         TestingWithFakeData.addWaterConsumed(currentDate, dataModelID, addOrSubtract);
-        getDate(currentDate);
+        refreshData(currentDate);
     }
 
     public interface IView {

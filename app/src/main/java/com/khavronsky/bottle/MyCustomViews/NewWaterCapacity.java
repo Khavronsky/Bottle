@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -68,9 +67,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
     }
 
     public void setFragmentManager(FragmentManager childFragmentManager) {
-        if (viewPager != null) {
-            this.childFragmentManager = childFragmentManager;
-        }
+        this.childFragmentManager = childFragmentManager;
         setAdapter();
     }
 
@@ -97,10 +94,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
         buttonDel.setVisibility(INVISIBLE);
 
         setSlideIndicator();
-
-        if (childFragmentManager != null) {
-            setAdapter();
-        }
+        setAdapter();
         setPicker();
         setListenerToViewPager();
         if (!newCapacityType) {
@@ -124,7 +118,6 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
             @Override
             public void onPageSelected(int position) {
                 currentScreen = position;
-                Log.d("MyX", "NewWaterCapacity pos" + position);
                 currentCapacityType = defaultValues.get(position).getPics();
                 slideIndicator.setFocusedCircle(currentScreen);
                 slideIndicator.invalidate();
@@ -158,8 +151,10 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
     }
 
     private void setAdapter() {
-        adapter = new AdapterToWaterPicsOnViewPagerFragment(childFragmentManager, defaultValues);
-        viewPager.setAdapter(adapter);
+        if (viewPager != null && childFragmentManager != null) {
+            adapter = new AdapterToWaterPicsOnViewPagerFragment(childFragmentManager, defaultValues);
+            viewPager.setAdapter(adapter);
+        }
     }
 
     public enum ButtonBehavior {

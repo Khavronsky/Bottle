@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.khavronsky.bottle.R;
 
 public class MyDateChanger extends CardView implements View.OnClickListener {
-    private final static String TAG = "MyLog MyDateChanger";
     private int currentDate = 15;
 
     ImageButton previousDate;

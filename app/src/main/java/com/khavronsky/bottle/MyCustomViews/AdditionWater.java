@@ -54,15 +54,15 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     }
 
     public void setFragmentManager(FragmentManager childFragmentManager) {
-        if (viewPager != null) {
-            this.childFragmentManager = childFragmentManager;
-        }
+        this.childFragmentManager = childFragmentManager;
         setAdapter();
     }
 
     private void setAdapter() {
-        AdapterToWaterPicsOnViewPagerFragment adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(childFragmentManager, modelOfCapacityTypeList);
-        viewPager.setAdapter(adapterToAddWaterFragment);
+        if (viewPager != null && childFragmentManager != null) {
+            AdapterToWaterPicsOnViewPagerFragment adapterToAddWaterFragment = new AdapterToWaterPicsOnViewPagerFragment(childFragmentManager, modelOfCapacityTypeList);
+            viewPager.setAdapter(adapterToAddWaterFragment);
+        }
     }
 
     private void init() {
@@ -81,9 +81,7 @@ public class AdditionWater extends CardView implements View.OnClickListener {
     private void firstSetView() {
         slideIndicator.setCountOfCircle(modelOfCapacityTypeList.size());
         currentCapacityID = modelOfCapacityTypeList.get(0).getId();
-        if (childFragmentManager != null) {
-            setAdapter();
-        }
+        setAdapter();
         plusButton.setOnClickListener(this);
         minusButton.setOnClickListener(this);
         setViewParamFromList(modelOfCapacityTypeList.get(currentScreen));

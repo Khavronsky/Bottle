@@ -33,13 +33,15 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
         additionWater.setFragmentManager(getChildFragmentManager());
         final MyDateChanger dateChanger = (MyDateChanger) view.findViewById(R.id.date_changer);
         currentDate = dateChanger.getCurrentDate();
-        presenter = new WaterScreenPresenter();
+        if (presenter == null) {
+            presenter = new WaterScreenPresenter();
+        }
         showConsumedWater = (TextView) view.findViewById(R.id.consumed_water);
         dateChanger.subscribeToChanges(new MyDateChanger.IDateChanged() {
             @Override
             public void changesHappened() {
                 currentDate = dateChanger.getCurrentDate();
-                presenter.getDate(currentDate);
+                presenter.refreshData(currentDate);
             }
         });
 
@@ -56,7 +58,7 @@ public class WaterScreenFragment extends Fragment implements WaterScreenPresente
     public void onStart() {
         super.onStart();
         presenter.setReference(this);
-        presenter.getDate(currentDate);
+        presenter.refreshData(currentDate);
     }
 
     @Override

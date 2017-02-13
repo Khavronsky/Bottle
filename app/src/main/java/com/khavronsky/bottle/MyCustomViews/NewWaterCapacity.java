@@ -2,9 +2,7 @@ package com.khavronsky.bottle.MyCustomViews;
 
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.FragmentManager;
@@ -16,7 +14,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +34,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
     TextInputLayout textInputLayout;
     boolean titleIsCorrect = false;
     ViewPager viewPager;
-    NumberPicker numberPicker;
+    BaseNumberPicker numberPicker;
     CirclesSlideIndicator slideIndicator;
     private CapacityType currentCapacityType = CapacityType.BOTTLE;
     FragmentManager childFragmentManager;
@@ -92,8 +89,8 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
         inputTitle = (EditText) findViewById(R.id.edit_capacity_title);
         slideIndicator = (CirclesSlideIndicator) findViewById(R.id.circlesSlideIndicator);
         viewPager = (ViewPager) findViewById(R.id.my_pager);
-        numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
-        setDividerColor(numberPicker, Color.rgb(45, 180, 229));
+        numberPicker = (BaseNumberPicker) findViewById(R.id.numberPicker);
+        numberPicker.setDividerColor(Color.rgb(45, 180, 229));
     }
 
     private void firstSetView() {
@@ -229,27 +226,6 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
                 behavior = ButtonBehavior.DELETE_TYPE;
                 listener.buttonClick(modelOfCapacityType, behavior);
                 break;
-        }
-    }
-
-    private void setDividerColor(NumberPicker picker, int color) {
-
-        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
-        for (java.lang.reflect.Field pf : pickerFields) {
-            if (pf.getName().equals("mSelectionDivider")) {
-                pf.setAccessible(true);
-                try {
-                    ColorDrawable colorDrawable = new ColorDrawable(color);
-                    pf.set(picker, colorDrawable);
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (Resources.NotFoundException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
         }
     }
 

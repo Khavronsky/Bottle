@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.widget.NumberPicker;
 
 public class BaseNumberPicker extends NumberPicker {
+
     public BaseNumberPicker(Context context) {
         super(context);
     }
@@ -19,7 +20,7 @@ public class BaseNumberPicker extends NumberPicker {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setDividerColor( int color) {
+    public void setDividerColor(int color) {
 
         java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
         for (java.lang.reflect.Field pf : pickerFields) {
@@ -27,13 +28,12 @@ public class BaseNumberPicker extends NumberPicker {
                 pf.setAccessible(true);
                 try {
                     ColorDrawable colorDrawable = new ColorDrawable(color);
-                    pf.set((NumberPicker)this, colorDrawable);
+                    pf.set((NumberPicker) this, colorDrawable);
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 } catch (Resources.NotFoundException e) {
                     e.printStackTrace();
-                }
-                catch (IllegalAccessException e) {
+                } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
                 break;

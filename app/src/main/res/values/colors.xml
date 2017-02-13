@@ -4,10 +4,11 @@
 
     <color name="colorPrimary">#77cdec</color>
     <color name="colorPrimaryDark">#41659b</color>
-    <color name="colorAccent">#df5f5d</color>
+    <color name="colorAccent">#6b7485</color>
 
     <!-- Color palette -->
 
+    <color name="red">#ff0000</color>
     <color name="bg">#e7e9eb</color>
     <color name="grey1">#ced1d6</color>
     <color name="grey3">#6b7485</color>

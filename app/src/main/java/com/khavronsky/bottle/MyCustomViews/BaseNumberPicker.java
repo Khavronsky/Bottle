@@ -1,12 +1,11 @@
+package com.khavronsky.bottle.MyCustomViews;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.widget.NumberPicker;
 
-/**
- * Created by i.larin on 22.08.2016.
- */
 public class BaseNumberPicker extends NumberPicker {
     public BaseNumberPicker(Context context) {
         super(context);

@@ -11,5 +11,10 @@
         android:orderInCategory="100"
         android:title="new capacity"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/def_cap_list"
+        android:orderInCategory="100"
+        android:title="default_capacity"
+        app:showAsAction="never"/>
 
 </menu>

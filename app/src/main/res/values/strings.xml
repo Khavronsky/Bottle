@@ -12,4 +12,5 @@
     <string name="delete">УДАЛИТЬ</string>
     <string name="Cancel">ОТМЕНА</string>
     <string name="Save">СОХРАНИТЬ</string>
+    <string name="def_cap_title">Емкость по умолчанию</string>
 </resources>

@@ -2,8 +2,10 @@ package com.khavronsky.bottle.MyCustomViews;
 
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -13,6 +15,7 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +33,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
     TextView buttonDel;
     TextView buttonCancel;
     TextView buttonSave;
-    TextInputEditText inputTitle;
+    EditText inputTitle;
     TextInputLayout textInputLayout;
     boolean titleIsCorrect = false;
     ViewPager viewPager;
@@ -86,10 +89,11 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
         buttonDel = (TextView) findViewById(R.id.button_del);
         buttonCancel = (TextView) findViewById(R.id.button_cancel);
         buttonSave = (TextView) findViewById(R.id.button_save);
-        inputTitle = (TextInputEditText) findViewById(R.id.edit_capacity_title);
+        inputTitle = (EditText) findViewById(R.id.edit_capacity_title);
         slideIndicator = (CirclesSlideIndicator) findViewById(R.id.circlesSlideIndicator);
         viewPager = (ViewPager) findViewById(R.id.my_pager);
         numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
+        setDividerColor(numberPicker, Color.rgb(45, 180, 229));
     }
 
     private void firstSetView() {
@@ -217,7 +221,7 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
                     }
                     listener.buttonClick(modelOfCapacityType, behavior);
                 } else {
-                    (Toast.makeText(getContext(), "ОЙ-ОЙ-ОЙ, НИЗЬЗЯ НАЖИМАТЬ", Toast.LENGTH_SHORT)).show();
+                    (Toast.makeText(getContext(), "ОЙ-ОЙ-ОЙ, НИЗЯ НАЖИМАТЬ", Toast.LENGTH_SHORT)).show();
                 }
                 break;
             case R.id.button_del:
@@ -225,6 +229,27 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
                 behavior = ButtonBehavior.DELETE_TYPE;
                 listener.buttonClick(modelOfCapacityType, behavior);
                 break;
+        }
+    }
+
+    private void setDividerColor(NumberPicker picker, int color) {
+
+        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
+        for (java.lang.reflect.Field pf : pickerFields) {
+            if (pf.getName().equals("mSelectionDivider")) {
+                pf.setAccessible(true);
+                try {
+                    ColorDrawable colorDrawable = new ColorDrawable(color);
+                    pf.set(picker, colorDrawable);
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (Resources.NotFoundException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
         }
     }
 

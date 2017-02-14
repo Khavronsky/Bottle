@@ -5,12 +5,7 @@
         android:id="@+id/water_consumed"
         android:orderInCategory="100"
         android:title="Water consumed"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/new_capacity"
-        android:orderInCategory="100"
-        android:title="new capacity"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/def_cap_list"
         android:orderInCategory="100"

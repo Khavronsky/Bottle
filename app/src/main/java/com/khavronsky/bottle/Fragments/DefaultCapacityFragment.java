@@ -30,6 +30,7 @@ public class DefaultCapacityFragment extends Fragment {
         textView = (TextView) view.findViewById(R.id.title_of_def_cap);
         addCapButton = (TextView) view.findViewById(R.id.add_new_capacity_button);
         recyclerView = (RecyclerView) view.findViewById(R.id.default_capacity_list);
+        recyclerView.setNestedScrollingEnabled(true);
         adapter = new AdapterToDefCapRecycler();
         mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -44,6 +45,22 @@ public class DefaultCapacityFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+        addCapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewWaterCapacityFragment fgd= new NewWaterCapacityFragment();
+                fgd.setModel(null);
+                fgd.subscribeToUpdater(new NewWaterCapacityFragment.IDataUpdater() {
+                    @Override
+                    public void update() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                fgd.show(getFragmentManager(),"");
+            }
+        });
+
         return view;
     }
+
 }

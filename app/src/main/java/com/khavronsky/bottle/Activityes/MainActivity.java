@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 startFragment(new WaterScreenFragment());
                 break;
             case (R.id.new_capacity):
-                startFragment(new NewWaterCapacityFragment());
+                NewWaterCapacityFragment fgd= new NewWaterCapacityFragment();
+                fgd.show(getSupportFragmentManager(),"");
                 break;
             case (R.id.def_cap_list):
                 startFragment(new DefaultCapacityFragment());

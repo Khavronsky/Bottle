@@ -2,14 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="56dp"
     >
+
     <com.khavronsky.bottle.MyCustomViews.NewWaterCapacity
         android:layout_width="328dp"
         android:layout_height="402dp"
         android:id="@+id/new_water_capacity_in_fragment"
-        android:layout_marginTop="28dp"
-        android:layout_gravity="center_horizontal">
+>
 
     </com.khavronsky.bottle.MyCustomViews.NewWaterCapacity>
 

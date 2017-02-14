@@ -1,11 +1,14 @@
 package com.khavronsky.bottle.Fragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import com.khavronsky.bottle.Data.ModelOfCapacityType;
 import com.khavronsky.bottle.Data.TestingWithFakeData;
@@ -15,7 +18,17 @@ import com.khavronsky.bottle.R;
 import java.util.List;
 
 
-public class NewWaterCapacityFragment extends Fragment {
+public class NewWaterCapacityFragment extends DialogFragment {
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+
+        // request a window without the title
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
+    }
 
     @Nullable
     @Override
@@ -44,7 +57,7 @@ public class NewWaterCapacityFragment extends Fragment {
                         TestingWithFakeData.getDataForWaterScreen().removeCapacityType(modelOfCapacityType);
                         break;
                 }
-                getActivity().onBackPressed();
+                dismiss();
             }
         });
         return view;

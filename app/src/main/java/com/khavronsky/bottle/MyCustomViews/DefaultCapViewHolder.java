@@ -30,17 +30,10 @@ public class DefaultCapViewHolder extends RecyclerView.ViewHolder {
         capacityTitle.setText(parameters.getTitle());
         capacityStep.setText(String.valueOf(parameters.getCapacityStep()));
         imgOfCapacityType.setImageResource(parameters.getPics().getRes());
-        radioButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                irbListener.chooseCapacityTypeForEdit(parameters.getId());
-                return true;
-            }
-        });
         radioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                irbListener.chooseDefaultCapacityType(parameters.getId());
+                irbListener.rButtonClick(parameters.getId());
             }
         });
     }
@@ -50,7 +43,6 @@ public class DefaultCapViewHolder extends RecyclerView.ViewHolder {
     }
 
     public interface IRBListener {
-        void chooseCapacityTypeForEdit(int capacityID);
-        void chooseDefaultCapacityType(int capacityID);
+        void rButtonClick(int capacityID);
     }
 }

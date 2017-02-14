@@ -14,7 +14,7 @@ import com.khavronsky.bottle.Fragments.WaterScreenFragment;
 import com.khavronsky.bottle.R;
 
 public class MainActivity extends AppCompatActivity {
-//    Fragment fragment1;jhhhj
+//    Fragment fragment1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

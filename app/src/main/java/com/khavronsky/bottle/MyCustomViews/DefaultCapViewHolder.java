@@ -14,6 +14,7 @@ public class DefaultCapViewHolder extends RecyclerView.ViewHolder {
     private TextView capacityTitle;
     private TextView capacityStep;
     private ImageView imgOfCapacityType;
+    private ImageView divider;
     private RadioButton radioButton;
     private ICapItemClickListener iCapItemClickListener;
     private View capItem;
@@ -30,7 +31,10 @@ public class DefaultCapViewHolder extends RecyclerView.ViewHolder {
         imgOfCapacityType = (ImageView) v.findViewById(R.id.def_cap_img);
         radioButton = (RadioButton) v.findViewById(R.id.def_cap_radioButton);
         capItem = v.findViewById(R.id.def_cap_item);
-
+        divider = (ImageView) v.findViewById(R.id.def_cap_divider);
+    }
+    public void hideDivider(){
+        divider.setVisibility(View.INVISIBLE);
     }
 
     public void setParameters(final ModelOfCapacityType parameters) {

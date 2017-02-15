@@ -21,7 +21,10 @@
             android:layout_marginLeft="56dp"
             android:layout_marginTop="14dp"
             android:textColor="@color/grey5"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:ems="10"/>
 
         <TextView
             android:id="@+id/def_cap_step"
@@ -41,6 +44,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right|center_vertical"
         android:theme="@style/MyRadioButton" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey1"
+        android:id="@+id/def_cap_divider"/>
 
 
 </FrameLayout>

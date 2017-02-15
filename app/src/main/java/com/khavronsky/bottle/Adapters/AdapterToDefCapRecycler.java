@@ -50,6 +50,7 @@ public class AdapterToDefCapRecycler extends RecyclerView.Adapter<DefaultCapView
                 chooseListener.chooseCapacityTypeForEdit(capacityID);
             }
         });
+        if (position == 0) holder.hideDivider();
     }
 
     @Override

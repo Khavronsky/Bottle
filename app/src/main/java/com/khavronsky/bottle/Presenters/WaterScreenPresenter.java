@@ -8,7 +8,7 @@ public class WaterScreenPresenter extends AbstractPresenter<WaterScreenPresenter
 
     public void refreshData(int date) {
         if (getMyObj() != null){
-            getMyObj().show(TestingWithFakeData.getDataOfWaterConsumed(date));
+            getMyObj().show(TestingWithFakeData.getDataForWaterScreen().getWaterConsumed(date));
         }
     }
 

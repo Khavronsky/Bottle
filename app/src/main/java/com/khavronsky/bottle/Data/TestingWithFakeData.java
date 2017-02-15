@@ -95,14 +95,6 @@ public class TestingWithFakeData {
         return dataForWaterScreen;
     }
 
-    public static List<ModelOfCapacityType> getModelOfCapacityTypeList() {
-        return dataForWaterScreen.getModelOfCapacityTypes();
-    }
-
-    public static DataOfWaterConsumed getDataOfWaterConsumed(int date) {
-        return dataForWaterScreen.getWaterConsumed(date);
-    }
-
     public static void addWaterConsumed(int date, int dataModelID, boolean b) {
         DataOfWaterConsumed tmp = dataForWaterScreen.getWaterConsumed(date);
         int capacityValue = dataForWaterScreen.getModelOfCapacityTypes().get(dataModelID).getCapacityStep();

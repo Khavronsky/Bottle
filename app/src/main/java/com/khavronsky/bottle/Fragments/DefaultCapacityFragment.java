@@ -35,7 +35,7 @@ public class DefaultCapacityFragment extends Fragment {
         adapter = new AdapterToDefCapRecycler();
         mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
-        adapter.setModelList(TestingWithFakeData.getModelOfCapacityTypeList());
+        adapter.setModelList(TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes());
         adapter.subscribeToChooseListener(new AdapterToDefCapRecycler.IRBChooseListener() {
             @Override
             public void chooseDefaultCapacityType(int capacityID) {

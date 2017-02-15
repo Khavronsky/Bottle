@@ -7,6 +7,15 @@ public class ModelOfCapacityType {
     private CapacityType pics;
     private String title;
     private int capacityStep;
+    private boolean defaultCapacity = false;
+
+    public boolean isDefaultCapacity() {
+        return defaultCapacity;
+    }
+
+    public void setDefaultCapacity(boolean defaultCapacity) {
+        this.defaultCapacity = defaultCapacity;
+    }
 
     public int getId() {
         return id;

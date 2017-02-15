@@ -8,12 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.khavronsky.bottle.Fragments.NewWaterCapacityFragment;
+import com.khavronsky.bottle.Fragments.DefaultCapacityFragment;
 import com.khavronsky.bottle.Fragments.WaterScreenFragment;
 import com.khavronsky.bottle.R;
 
 public class MainActivity extends AppCompatActivity {
-//    Fragment fragment1;jhhhj
+//    Fragment fragment1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
             case (R.id.water_consumed):
                 startFragment(new WaterScreenFragment());
                 break;
-            case (R.id.new_capacity):
-                startFragment(new NewWaterCapacityFragment());
+            case (R.id.def_cap_list):
+                startFragment(new DefaultCapacityFragment());
                 break;
         }
         return super.onOptionsItemSelected(item);

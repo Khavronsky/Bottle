@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.khavronsky.bottle.Adapters.AdapterToDefCapRecycler;
+import com.khavronsky.bottle.Data.ModelOfCapacityType;
 import com.khavronsky.bottle.Data.TestingWithFakeData;
 import com.khavronsky.bottle.R;
 
@@ -38,8 +39,16 @@ public class DefaultCapacityFragment extends Fragment {
         adapter.subscribeToChooseListener(new AdapterToDefCapRecycler.IRBChooseListener() {
             @Override
             public void chooseDefaultCapacityType(int capacityID) {
-                String s = "id = " + capacityID;
+                String s = "Choose default capacity -> id " + capacityID;
                 Toast.makeText(getActivity().getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void chooseCapacityTypeForEdit(int capacityID) {
+                String s = "Edit capacity -> id " + capacityID;
+                Toast.makeText(getActivity().getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                startWaterCapacityEditor(TestingWithFakeData.getDataForWaterScreen().getCapacityType(capacityID));
             }
         });
         recyclerView.setAdapter(adapter);
@@ -48,19 +57,23 @@ public class DefaultCapacityFragment extends Fragment {
         addCapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewWaterCapacityFragment fgd= new NewWaterCapacityFragment();
-                fgd.setModel(null);
-                fgd.subscribeToUpdater(new NewWaterCapacityFragment.IDataUpdater() {
-                    @Override
-                    public void update() {
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-                fgd.show(getFragmentManager(),"");
+                startWaterCapacityEditor(null);
             }
         });
 
         return view;
+    }
+
+    private void startWaterCapacityEditor(ModelOfCapacityType model) {
+        NewWaterCapacityFragment fgd= new NewWaterCapacityFragment();
+        fgd.setModel(model);
+        fgd.subscribeToUpdater(new NewWaterCapacityFragment.IDataUpdater() {
+            @Override
+            public void update() {
+                adapter.notifyDataSetChanged();
+            }
+        });
+        fgd.show(getFragmentManager(),"");
     }
 
 }

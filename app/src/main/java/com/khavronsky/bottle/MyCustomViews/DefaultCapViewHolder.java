@@ -15,7 +15,13 @@ public class DefaultCapViewHolder extends RecyclerView.ViewHolder {
     private TextView capacityStep;
     private ImageView imgOfCapacityType;
     private RadioButton radioButton;
-    private IRBListener irbListener;
+    private ICapItemClickListener iCapItemClickListener;
+    private View capItem;
+    private boolean isChecked = false;
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
 
     public DefaultCapViewHolder(View v) {
         super(v);
@@ -23,6 +29,7 @@ public class DefaultCapViewHolder extends RecyclerView.ViewHolder {
         capacityStep = (TextView) v.findViewById(R.id.def_cap_step);
         imgOfCapacityType = (ImageView) v.findViewById(R.id.def_cap_img);
         radioButton = (RadioButton) v.findViewById(R.id.def_cap_radioButton);
+        capItem = v.findViewById(R.id.def_cap_item);
 
     }
 
@@ -30,19 +37,28 @@ public class DefaultCapViewHolder extends RecyclerView.ViewHolder {
         capacityTitle.setText(parameters.getTitle());
         capacityStep.setText(String.valueOf(parameters.getCapacityStep()));
         imgOfCapacityType.setImageResource(parameters.getPics().getRes());
+        radioButton.setChecked(isChecked);
         radioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                irbListener.rButtonClick(parameters.getId());
+                iCapItemClickListener.rButtonClick(parameters.getId());
+                isChecked = true;
+            }
+        });
+        capItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iCapItemClickListener.capItemClick(parameters.getId());
             }
         });
     }
 
-    public void subscribeToRButtonClick(IRBListener listener){
-        irbListener = listener;
+    public void subscribeToICapItemClickListener(ICapItemClickListener listener){
+        iCapItemClickListener = listener;
     }
 
-    public interface IRBListener {
+    public interface ICapItemClickListener {
         void rButtonClick(int capacityID);
+        void capItemClick(int capacityID);
     }
 }

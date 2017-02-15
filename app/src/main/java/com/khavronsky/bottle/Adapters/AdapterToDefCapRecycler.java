@@ -16,6 +16,11 @@ public class AdapterToDefCapRecycler extends RecyclerView.Adapter<DefaultCapView
 
     private List<ModelOfCapacityType> modelList;
     private IRBChooseListener chooseListener;
+    private int defaultCapacity;
+
+    public void setDefaultCapacity(int defaultCapacity) {
+        this.defaultCapacity = defaultCapacity;
+    }
 
     public void setModelList(List<ModelOfCapacityType> modelList) {
         this.modelList = modelList;
@@ -29,13 +34,20 @@ public class AdapterToDefCapRecycler extends RecyclerView.Adapter<DefaultCapView
     }
 
     @Override
-    public void onBindViewHolder(DefaultCapViewHolder holder, int position) {
+    public void onBindViewHolder(DefaultCapViewHolder holder, final int position) {
+        holder.setChecked(defaultCapacity == position);
         holder.setParameters(modelList.get(position));
-        holder.subscribeToRButtonClick(new DefaultCapViewHolder.IRBListener() {
+        holder.subscribeToICapItemClickListener(new DefaultCapViewHolder.ICapItemClickListener() {
 
             @Override
             public void rButtonClick(int capacityID) {
                 chooseListener.chooseDefaultCapacityType(capacityID);
+                defaultCapacity = position;
+            }
+
+            @Override
+            public void capItemClick(int capacityID) {
+                chooseListener.chooseCapacityTypeForEdit(capacityID);
             }
         });
     }
@@ -51,5 +63,6 @@ public class AdapterToDefCapRecycler extends RecyclerView.Adapter<DefaultCapView
 
     public interface IRBChooseListener {
         void chooseDefaultCapacityType(int capacityID);
+        void chooseCapacityTypeForEdit(int capacityID);
     }
 }

@@ -3,29 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="72dp">
 
-    <ImageView
-        android:id="@+id/def_cap_img"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_vertical|left" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/def_cap_item">
 
-    <TextView
-        android:id="@+id/def_cap_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="14dp"
-        android:textColor="@color/grey5"
-        android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/def_cap_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical|left" />
 
-    <TextView
-        android:id="@+id/def_cap_step"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="37dp"
-        android:textColor="@color/grey2"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/def_cap_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/grey5"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/def_cap_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="37dp"
+            android:textColor="@color/grey2"
+            android:textSize="14sp" />
+
+    </FrameLayout>
+
 
     <RadioButton
         android:id="@+id/def_cap_radioButton"

@@ -130,8 +130,12 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
             currentCapacityType = modelOfCapacityType.getPics();
             title.setText("Старая емкость");
             inputTitle.setText(modelOfCapacityType.getTitle());
+            inputTitle.setSelection(modelOfCapacityType.getTitle().length());
             numberPicker.setValue(modelOfCapacityType.getCapacityStep() / 50);
             buttonDel.setVisibility(VISIBLE);
+        } else {
+            CardView view = (CardView) findViewById(R.id.new_water_capacity);
+            view.setFocusableInTouchMode(true);
         }
     }
 

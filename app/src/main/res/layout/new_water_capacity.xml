@@ -4,6 +4,7 @@
     android:id="@+id/new_water_capacity"
     android:layout_width="328dp"
     android:layout_height="402dp"
+
     android:background="@color/white">
 
     <TextView

@@ -67,6 +67,7 @@ public class NewWaterCapacityFragment extends DialogFragment {
                         break;
                     case DELETE_TYPE:
                         TestingWithFakeData.getDataForWaterScreen().removeCapacityType(modelOfCapacityType);
+                        updater.deleteCapType();
                         break;
                 }
                 updater.update();
@@ -77,6 +78,7 @@ public class NewWaterCapacityFragment extends DialogFragment {
 
     public interface IDataUpdater{
         void update();
+        void deleteCapType();
     }
     void subscribeToUpdater(IDataUpdater updater){
         this.updater = updater;

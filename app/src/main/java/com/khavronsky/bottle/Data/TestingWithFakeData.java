@@ -59,6 +59,7 @@ public class TestingWithFakeData {
         first.setId(0);
         first.setTitle("Bottle");
         first.setCapacityStep(500);
+        first.setDefaultCapacity(true);
 
         second.setPics(CapacityType.DROP);
         second.setId(1);

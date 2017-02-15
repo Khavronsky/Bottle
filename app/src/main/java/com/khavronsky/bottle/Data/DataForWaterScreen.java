@@ -54,6 +54,23 @@ public class DataForWaterScreen {
         return null;
     }
 
+    public boolean isDefaultCapacityType(int id) {
+        return getCapacityType(id) != null && getCapacityType(id).isDefaultCapacity();
+    }
+
+    public void checkedCapacityTypeAsDefault(int capacityID){
+        ModelOfCapacityType defaultType = getCapacityType(capacityID);
+        for (ModelOfCapacityType model :
+                modelOfCapacityTypes) {
+            if (model.getId() == defaultType.getId()){
+                model.setDefaultCapacity(true);
+            } else {
+                model.setDefaultCapacity(false);
+            }
+            replaceCapacityType(model);
+        }
+    }
+
     public void replaceCapacityType(ModelOfCapacityType capacityType) {
         int index = modelOfCapacityTypes.indexOf(getCapacityType(capacityType.getId()));
         modelOfCapacityTypes.set(index, capacityType);

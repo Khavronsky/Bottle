@@ -20,10 +20,6 @@ public class DefaultCapViewHolder extends RecyclerView.ViewHolder {
     private View capItem;
     private boolean isChecked = false;
 
-    public void setChecked(boolean checked) {
-        isChecked = checked;
-    }
-
     public DefaultCapViewHolder(View v) {
         super(v);
         capacityTitle = (TextView) v.findViewById(R.id.def_cap_title);
@@ -41,6 +37,7 @@ public class DefaultCapViewHolder extends RecyclerView.ViewHolder {
         capacityTitle.setText(parameters.getTitle());
         capacityStep.setText(String.valueOf(parameters.getCapacityStep()));
         imgOfCapacityType.setImageResource(parameters.getPics().getRes());
+        isChecked = parameters.isDefaultCapacity();
         radioButton.setChecked(isChecked);
         radioButton.setOnClickListener(new View.OnClickListener() {
             @Override

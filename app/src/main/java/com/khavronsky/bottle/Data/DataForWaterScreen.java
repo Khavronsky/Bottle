@@ -1,6 +1,8 @@
 package com.khavronsky.bottle.Data;
 
 
+import android.util.Log;
+
 import java.util.List;
 
 public class DataForWaterScreen {
@@ -78,5 +80,6 @@ public class DataForWaterScreen {
 
     public void removeCapacityType(ModelOfCapacityType capacityType) {
         modelOfCapacityTypes.remove(capacityType);
+        Log.d("KhSY", "DELETE capacity - id = " + capacityType.getId());
     }
 }

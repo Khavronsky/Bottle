@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.khavronsky.bottle.Adapters.AdapterToDefCapRecycler;
 import com.khavronsky.bottle.Data.ModelOfCapacityType;
@@ -25,6 +24,7 @@ public class DefaultCapacityFragment extends Fragment {
     RecyclerView recyclerView;
     AdapterToDefCapRecycler adapter;
     TextView addCapButton;
+    NewWaterCapacityFragment.IDataUpdater updater;
 
     @Nullable
     @Override
@@ -36,27 +36,25 @@ public class DefaultCapacityFragment extends Fragment {
         recyclerView.setNestedScrollingEnabled(true);
         adapter = new AdapterToDefCapRecycler();
         mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+//        setCallback();
         recyclerView.setLayoutManager(mLayoutManager);
         adapter.setModelList(TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes());
         adapter.subscribeToChooseListener(new AdapterToDefCapRecycler.IRBChooseListener() {
             @Override
             public void chooseDefaultCapacityType(int capacityID) {
-                String s = "Choose default capacity -> id " + capacityID;
-                Toast.makeText(getActivity().getApplicationContext(), s, Toast.LENGTH_SHORT).show();
                 TestingWithFakeData.getDataForWaterScreen().checkedCapacityTypeAsDefault(capacityID);
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void chooseCapacityTypeForEdit(int capacityID, int index) {
-                String s = "Edit capacity -> id " + capacityID;
-                Toast.makeText(getActivity().getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                Log.d("KhSY", "запуск редактирования емкости " + capacityID + " индекс " + index);
                 startWaterCapacityEditor(view, TestingWithFakeData.getDataForWaterScreen().getCapacityType(capacityID), index);
-                adapter.notifyDataSetChanged();
+                updateAdapter();
             }
         });
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        updateAdapter();
 
         addCapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,49 +62,77 @@ public class DefaultCapacityFragment extends Fragment {
                 startWaterCapacityEditor(view, null, 0);
             }
         });
+
         return view;
     }
 
     private void startWaterCapacityEditor(final View view, final ModelOfCapacityType model, final int index) {
-        NewWaterCapacityFragment fgd= new NewWaterCapacityFragment();
-        fgd.setModel(model);
+        NewWaterCapacityFragment fgd = new NewWaterCapacityFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("model", model);
+        fgd.setArguments(bundle);
         fgd.subscribeToUpdater(new NewWaterCapacityFragment.IDataUpdater() {
             @Override
             public void deleteCapType() {
-                Snackbar.make(view, "Ты чё? Ща правда удалю!", Snackbar.LENGTH_SHORT).setAction("Бес попутал", new View.OnClickListener() {
+                Snackbar.make(view, "Ты чё? Ща правда удалю!", Snackbar.LENGTH_LONG).setAction("Бес попутал", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        model.setDefaultCapacity(false);
                         TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().add(index, model);
                         updateAdapter();
                     }
                 }).show();
-                Log.d("KhSY", "deleteCapType: cancel");
             }
 
             @Override
             public void update() {
-                resetDefCapIfDelete();
-                adapter.notifyDataSetChanged();
+                updateAdapter();
             }
         });
-        fgd.show(getFragmentManager(),"");
+        fgd.show(getFragmentManager(), "");
     }
-    private void resetDefCapIfDelete() {
-        boolean defCap = false;
-        for (ModelOfCapacityType model :
-                TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes()) {
-            if (model.isDefaultCapacity()){
-                defCap = true;
+
+    private void setDefCapIfUndefined() {
+        if (!TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().isEmpty()) {
+            boolean checkDefCap = false;
+            for (ModelOfCapacityType model :
+                    TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes()) {
+                if (model.isDefaultCapacity()) {
+                    checkDefCap = true;
+                }
+
+            }
+            if (!checkDefCap) {
+                int id = TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().get(0).getId();
+                TestingWithFakeData.getDataForWaterScreen().checkedCapacityTypeAsDefault(id);
             }
         }
-        if (!defCap && !TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().isEmpty()){
-            int id = TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().get(0).getId();
-            TestingWithFakeData.getDataForWaterScreen().checkedCapacityTypeAsDefault(id);
-        }
     }
 
-    private void updateAdapter(){
+//    void setCallback(final View view){
+//        updater = new NewWaterCapacityFragment.IDataUpdater() {
+//            @Override
+//            public void deleteCapType() {
+//                Snackbar.make(view, "Ты чё? Ща правда удалю!", Snackbar.LENGTH_LONG).setAction("Бес попутал", new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        ModelOfCapacityType model = TestingWithFakeData.getDataForWaterScreen().getCapacityType()
+//                        model.setDefaultCapacity(false);
+//                        TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().add(index, model);
+//                        updateAdapter();
+//                    }
+//                }).show();
+//            }
+//
+//            @Override
+//            public void update() {
+//                updateAdapter();
+//            }
+//        };
+//    }
+
+    private void updateAdapter() {
+        setDefCapIfUndefined();
         adapter.notifyDataSetChanged();
     }
-
 }

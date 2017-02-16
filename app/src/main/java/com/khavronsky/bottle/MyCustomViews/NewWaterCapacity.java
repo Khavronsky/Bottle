@@ -122,10 +122,8 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
             }
         });
 
-        setSlideIndicator();
         setAdapter();
         setPicker();
-        setListenerToViewPager();
         if (!newCapacityType) {
             currentCapacityType = modelOfCapacityType.getPics();
             title.setText("Старая емкость");
@@ -133,10 +131,14 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
             inputTitle.setSelection(modelOfCapacityType.getTitle().length());
             numberPicker.setValue(modelOfCapacityType.getCapacityStep() / 50);
             buttonDel.setVisibility(VISIBLE);
+
         } else {
             CardView view = (CardView) findViewById(R.id.new_water_capacity);
             view.setFocusableInTouchMode(true);
         }
+
+        setSlideIndicator();
+        setListenerToViewPager();
     }
 
     private void setSlideIndicator() {
@@ -204,13 +206,11 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
         ButtonBehavior behavior = null;
         switch (id) {
             case R.id.button_cancel:
-                (Toast.makeText(getContext(), "cancel", Toast.LENGTH_SHORT)).show();
                 behavior = ButtonBehavior.CLOSE_WINDOW;
                 listener.buttonClick(modelOfCapacityType, behavior);
                 break;
             case R.id.button_save:
                 if (titleIsCorrect) {
-                    (Toast.makeText(getContext(), "save", Toast.LENGTH_SHORT)).show();
                     String string = String.valueOf(inputTitle.getText());
                     modelOfCapacityType.setTitle(string);
                     modelOfCapacityType.setPics(currentCapacityType);
@@ -226,7 +226,6 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
                 }
                 break;
             case R.id.button_del:
-                (Toast.makeText(getContext(), "delete", Toast.LENGTH_SHORT)).show();
                 behavior = ButtonBehavior.DELETE_TYPE;
                 listener.buttonClick(modelOfCapacityType, behavior);
                 break;

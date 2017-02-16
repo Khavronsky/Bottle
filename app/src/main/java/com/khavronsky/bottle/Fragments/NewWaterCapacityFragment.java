@@ -25,10 +25,8 @@ public class NewWaterCapacityFragment extends DialogFragment {
     NewWaterCapacity newWaterCapacity;
     IDataUpdater updater;
 
-    public void setModel(ModelOfCapacityType model) {
-        this.model = model;
-        Log.d("KhSY", " 1");
-
+    private void setModel() {
+        model = getArguments().getParcelable("model");
     }
 
     @NonNull
@@ -36,7 +34,6 @@ public class NewWaterCapacityFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        Log.d("KhSY", " 2");
         return dialog;
     }
 
@@ -46,7 +43,7 @@ public class NewWaterCapacityFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.new_water_capacity_fragment, container, false);
         newWaterCapacity = (NewWaterCapacity) view.findViewById(R.id.new_water_capacity_in_fragment);
         newWaterCapacity.setFragmentManager(getChildFragmentManager());
-        Log.d("KhSY", " 3");
+        setModel();
         startFragment();
         return view;
     }
@@ -58,10 +55,12 @@ public class NewWaterCapacityFragment extends DialogFragment {
             public void buttonClick(ModelOfCapacityType modelOfCapacityType, NewWaterCapacity.ButtonBehavior behavior) {
                 switch (behavior) {
                     case CREATE_NEW_TYPE:
-                        modelOfCapacityType.setId(TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().size());
+                        modelOfCapacityType.setId(idForNewCapacity());
                         List<ModelOfCapacityType> list = TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes();
                         list.add(modelOfCapacityType);
                         TestingWithFakeData.getDataForWaterScreen().setModelOfCapacityTypes(list);
+                        Log.d("KhSY", "новая емкость id=" + modelOfCapacityType.getId());
+                        break;
                     case CHANGE_TYPE:
                         TestingWithFakeData.getDataForWaterScreen().replaceCapacityType(modelOfCapacityType);
                         break;
@@ -76,11 +75,24 @@ public class NewWaterCapacityFragment extends DialogFragment {
         });
     }
 
-    public interface IDataUpdater{
+    public interface IDataUpdater {
         void update();
+
         void deleteCapType();
     }
-    void subscribeToUpdater(IDataUpdater updater){
+
+    void subscribeToUpdater(IDataUpdater updater) {
         this.updater = updater;
+    }
+
+    private int idForNewCapacity() {
+        int i = 0;
+        for (ModelOfCapacityType model :
+                TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes()) {
+            if (model.getId() > i) {
+                i = model.getId();
+            }
+        }
+        return i + 1;
     }
 }

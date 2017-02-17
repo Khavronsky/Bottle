@@ -5,6 +5,8 @@ import android.util.Log;
 
 import java.util.List;
 
+import static com.khavronsky.bottle.MyLog.TAG;
+
 public class DataForWaterScreen {
 
     private List<ModelOfCapacityType> modelOfCapacityTypes;
@@ -80,6 +82,6 @@ public class DataForWaterScreen {
 
     public void removeCapacityType(ModelOfCapacityType capacityType) {
         modelOfCapacityTypes.remove(capacityType);
-        Log.d("KhSY", "DELETE capacity - id = " + capacityType.getId());
+        Log.d(TAG, "DELETE capacity - id = " + capacityType.getId());
     }
 }

@@ -18,6 +18,7 @@ import com.khavronsky.bottle.R;
 
 import java.util.List;
 
+import static com.khavronsky.bottle.MyLog.TAG;
 
 public class NewWaterCapacityFragment extends DialogFragment {
 
@@ -40,6 +41,7 @@ public class NewWaterCapacityFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "NewWaterCapacityFragment / onCreateView: ");
         View view = inflater.inflate(R.layout.new_water_capacity_fragment, container, false);
         newWaterCapacity = (NewWaterCapacity) view.findViewById(R.id.new_water_capacity_in_fragment);
         newWaterCapacity.setFragmentManager(getChildFragmentManager());
@@ -66,11 +68,19 @@ public class NewWaterCapacityFragment extends DialogFragment {
                         break;
                     case DELETE_TYPE:
                         TestingWithFakeData.getDataForWaterScreen().removeCapacityType(modelOfCapacityType);
-                        updater.deleteCapType();
+                        if (updater != null) {
+                            updater.deleteCapType();
+                        }
                         break;
                 }
-                updater.update();
+                Log.d(TAG, "buttonClick() " + updater);
+                if (updater != null) {
+                    updater.update();
+                }
                 dismiss();
+                if (updater!=null){
+                    updater.offShow();
+                }
             }
         });
     }
@@ -79,6 +89,7 @@ public class NewWaterCapacityFragment extends DialogFragment {
         void update();
 
         void deleteCapType();
+        void offShow();
     }
 
     void subscribeToUpdater(IDataUpdater updater) {

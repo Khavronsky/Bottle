@@ -52,6 +52,7 @@ public class NewWaterCapacityFragment extends DialogFragment {
     }
 
     void startFragment() {
+        Log.d(TAG, "NewWaterCapacityFragment / startFragment: ");
         newWaterCapacity.setData(model);
         newWaterCapacity.subscribeToButtonListener(new NewWaterCapacity.ButtonListener() {
             @Override
@@ -62,7 +63,6 @@ public class NewWaterCapacityFragment extends DialogFragment {
                         List<ModelOfCapacityType> list = TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes();
                         list.add(modelOfCapacityType);
                         TestingWithFakeData.getDataForWaterScreen().setModelOfCapacityTypes(list);
-                        updater.addedNewCap();
                         Log.d("KhSY", "новая емкость id=" + modelOfCapacityType.getId());
                         break;
                     case CHANGE_TYPE:
@@ -76,9 +76,7 @@ public class NewWaterCapacityFragment extends DialogFragment {
                         break;
                 }
                 Log.d(TAG, "buttonClick() " + updater);
-
                 dismiss();
-
             }
         });
     }
@@ -86,19 +84,13 @@ public class NewWaterCapacityFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        if (updater != null) {
-            updater.update();
-            updater.closeCapEditor();
-        }
+        updater.update();
         Log.d(TAG, "onDismiss: ");
     }
 
     public interface IDataUpdater {
         void update();
-
         void deleteCapType();
-        void closeCapEditor();
-        void addedNewCap();
     }
 
     void subscribeToUpdater(IDataUpdater updater) {

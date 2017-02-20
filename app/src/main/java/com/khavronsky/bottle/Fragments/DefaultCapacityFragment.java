@@ -25,9 +25,9 @@ public class DefaultCapacityFragment extends Fragment {
     RecyclerView recyclerView;
     AdapterToDefCapRecycler adapter;
     TextView addCapButton;
-    Bundle state;
+    NewWaterCapacityFragment.IDataUpdater updater;
     NewWaterCapacityFragment fgd;
-    boolean showFGD = false;
+    Bundle state;
 
     @Nullable
     @Override
@@ -41,22 +41,18 @@ public class DefaultCapacityFragment extends Fragment {
         adapter = new AdapterToDefCapRecycler();
         mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
-        state = new Bundle();
         adapter.setModelList(TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes());
+        state = new Bundle();
 
         if (savedInstanceState != null) {
-            showFGD = savedInstanceState.getBoolean("showFGD");
-            Log.d(TAG, "onCreateView() state: " + showFGD);
-            if (showFGD) {
-                state.putAll(savedInstanceState);
-                ModelOfCapacityType mct = TestingWithFakeData.getDataForWaterScreen().getCapacityType(state.getInt("id", 0));
-                if (state.getBoolean("new")) {
-                    mct = null;
-                }
-                Log.d(TAG, "onCreateView() state: " + state);
-                startWaterCapacityEditor(view, mct, state.getInt("index"));
+            fgd = (NewWaterCapacityFragment) getActivity().getSupportFragmentManager().findFragmentByTag("tag123");
+            if (fgd != null) {
+                fgd.subscribeToUpdater(setUpdater(view, TestingWithFakeData.getDataForWaterScreen()
+                        .getCapacityType(savedInstanceState.getInt("id")), savedInstanceState.getInt("index")));
+
             }
         }
+
         adapter.subscribeToChooseListener(new AdapterToDefCapRecycler.IRBChooseListener() {
             @Override
             public void chooseDefaultCapacityType(int capacityID) {
@@ -69,7 +65,6 @@ public class DefaultCapacityFragment extends Fragment {
                 Log.d("KhSY", "запуск редактирования емкости " + capacityID + " индекс " + index);
                 state.putInt("id", capacityID);
                 state.putInt("index", index);
-
                 startWaterCapacityEditor(view, TestingWithFakeData.getDataForWaterScreen().getCapacityType(capacityID), index);
                 updateAdapter();
             }
@@ -80,13 +75,9 @@ public class DefaultCapacityFragment extends Fragment {
         addCapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                state.putInt("id", 0);
-                state.putInt("index", 0);
-                state.putBoolean("new", true);
                 startWaterCapacityEditor(view, null, 0);
             }
         });
-
         return view;
     }
 
@@ -94,8 +85,14 @@ public class DefaultCapacityFragment extends Fragment {
         fgd = new NewWaterCapacityFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable("model", model);
+        updater = setUpdater(view, model, index);
         fgd.setArguments(bundle);
-        fgd.subscribeToUpdater(new NewWaterCapacityFragment.IDataUpdater() {
+        fgd.subscribeToUpdater(updater);
+        fgd.show(getFragmentManager(), "tag123");
+    }
+
+    NewWaterCapacityFragment.IDataUpdater setUpdater(final View view, final ModelOfCapacityType model, final int index){
+        updater = new NewWaterCapacityFragment.IDataUpdater() {
             @Override
             public void deleteCapType() {
                 Snackbar.make(view, "Ты чё? Ща правда удалю!", Snackbar.LENGTH_LONG).setAction("Бес попутал", new View.OnClickListener() {
@@ -109,25 +106,13 @@ public class DefaultCapacityFragment extends Fragment {
             }
 
             @Override
-            public void closeCapEditor() {
-                state.putBoolean("new", false);
-                fgd = null;
-            }
-
-            @Override
-            public void addedNewCap() {
-
-
-            }
-
-            @Override
             public void update() {
+                Log.d(TAG, "update: ");
                 updateAdapter();
             }
-
-        });
-        fgd.show(getFragmentManager(), "tag123");
-
+        };
+        Log.d(TAG, "setUpdater: ");
+        return updater;
     }
 
     @Override
@@ -149,18 +134,6 @@ public class DefaultCapacityFragment extends Fragment {
                 int id = TestingWithFakeData.getDataForWaterScreen().getModelOfCapacityTypes().get(0).getId();
                 TestingWithFakeData.getDataForWaterScreen().checkedCapacityTypeAsDefault(id);
             }
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (fgd != null) {
-            fgd.dismiss();
-            fgd = null;
-            state.putBoolean("showFGD", true);
-        } else {
-            state.putBoolean("showFGD", false);
         }
     }
 

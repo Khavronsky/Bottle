@@ -57,7 +57,7 @@ public class DefaultCapacityFragment extends Fragment {
             @Override
             public void chooseDefaultCapacityType(int capacityID) {
                 TestingWithFakeData.getDataForWaterScreen().checkedCapacityTypeAsDefault(capacityID);
-                adapter.notifyDataSetChanged();
+                updateAdapter();
             }
 
             @Override

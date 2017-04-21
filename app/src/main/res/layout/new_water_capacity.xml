@@ -103,6 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:descendantFocusability="blocksDescendants"
                 android:width="100dp"
                 android:background="#00000000" />
 

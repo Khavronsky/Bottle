@@ -1,68 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="344dp"
-    android:background="@color/white">
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/my_pager"
-        android:layout_width="match_parent"
-        android:layout_height="176dp"
-        android:layout_gravity="center_horizontal"
-        android:overScrollMode="never"
-        android:layout_marginTop="32dp" />
-
-    <TextView
-        android:id="@+id/tv_title_of_capacity"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="212dp"
-        android:text="@string/waterTarget" />
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
 
     <FrameLayout
-        android:layout_width="196dp"
-        android:layout_height="38dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="243dp">
+        app:layout_aspectRatio="100%"
+        app:layout_widthPercent="100%"
+        >
 
-        <ImageButton
-            android:id="@+id/button_plus"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:background="#00000000"
-            android:contentDescription="@string/button_plus_desc"
-            app:srcCompat="@drawable/button_plus_selector" />
-
-        <ImageButton
-            android:id="@+id/button_minus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:background="#00000000"
-            android:contentDescription="@string/button_minus_desc"
-            app:srcCompat="@drawable/button_minus_selector" />
-
-        <TextView
-            android:id="@+id/tv_value_of_capacity"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
             android:layout_gravity="center"
-            android:text="@string/capacity" />
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+>
+
+                <include
+                    android:id="@+id/add_water_frg"
+                    layout="@layout/add_water_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible">
+
+                </include>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/my_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@+id/add_water_frg"
+                    android:layout_alignTop="@+id/add_water_frg"
+                    android:layout_gravity="center_horizontal"
+                    android:overScrollMode="never"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_title_of_capacity"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="@string/waterTarget"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="11dp"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageButton
+                        android:id="@+id/button_minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="#00000000"
+                        android:contentDescription="@string/button_minus_desc"
+                        app:srcCompat="@drawable/new_water_button_minus_selector"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_value_of_capacity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageButton
+                        android:id="@+id/button_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:background="#00000000"
+                        android:contentDescription="@string/button_plus_desc"
+                        app:srcCompat="@drawable/new_water_button_plus_selector"/>
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+            <com.khavronsky.bottle.MyCustomViews.CirclesSlideIndicator
+                android:id="@+id/circlesSlideIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="8dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="7dp"
+                app:defaultColor="#ced1d6"
+                app:focusedColor="#95dffa"
+                app:margin="24dp"
+                app:radius="4dp"/>
+        </LinearLayout>
     </FrameLayout>
 
-    <com.khavronsky.bottle.MyCustomViews.CirclesSlideIndicator
-        android:id="@+id/circlesSlideIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="8dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="286dp"
-        app:defaultColor="#ced1d6"
-        app:focusedColor="#95dffa"
-        app:margin="24dp"
-        app:radius="4dp" />
-
-</FrameLayout>
+</android.support.percent.PercentFrameLayout>

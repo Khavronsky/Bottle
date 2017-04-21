@@ -85,7 +85,14 @@ public class AdditionWater extends CardView implements View.OnClickListener {
         plusButton.setOnClickListener(this);
         minusButton.setOnClickListener(this);
         setViewParamFromList(modelOfCapacityTypeList.get(currentScreen));
-
+        for (int i = 0; i < modelOfCapacityTypeList.size(); i++) {
+            if(modelOfCapacityTypeList.get(i).isDefaultCapacity()){
+                viewPager.setCurrentItem(i, false);
+                currentScreen = i;
+                currentCapacityID = modelOfCapacityTypeList.get(i).getId();
+                setViewParamFromList(modelOfCapacityTypeList.get(i));
+            }
+        }
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {

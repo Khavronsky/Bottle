@@ -105,7 +105,7 @@ public class CirclesSlideIndicator extends View {
 
         int firstCircleCoordinate;
         int oddOrEven = countCircles;
-        if ((oddOrEven %= 2) != 0) {
+        if (oddOrEven % 2 != 0) {
 
             firstCircleCoordinate = myWidth / 2 - ((countCircles - 1) / 2) * margin;
         } else {

@@ -148,7 +148,8 @@ public class NewWaterCapacity extends CardView implements View.OnClickListener {
     }
 
     private void setListenerToViewPager() {
-        viewPager.setCurrentItem(currentCapacityType.ordinal());
+        viewPager.setCurrentItem(currentCapacityType.ordinal(), false);
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
